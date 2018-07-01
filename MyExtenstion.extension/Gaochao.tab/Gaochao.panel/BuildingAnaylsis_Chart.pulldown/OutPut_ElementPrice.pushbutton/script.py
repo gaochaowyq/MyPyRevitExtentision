@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 __doc__="设置构件价格"
 import os
+import traceback
 import sys
 import rpw
 from rpw import revit, DB, UI,db,doc
@@ -56,14 +57,13 @@ for i in OUTPUT:
 	try:
 		output=CTC(c)
 		output=output.OutPut()
-
 		c=MyCharts(output)
 		c.test1_chart()
 		JsonFile=c.ToJson()
 		o.append(JsonFile)
-	except:
-		pass
-with open("d://{filename}.svf.lln".format(filename=_filename),'wb') as f:
+	except Exception,e:
+		traceback.print_exc()
+with open("e://{filename}.svf.lln".format(filename=_filename),'wb') as f:
 	pickle.dump(o,f)
 	print("{filename}.svf.lln is Writed".format(filename=_filename))
 
