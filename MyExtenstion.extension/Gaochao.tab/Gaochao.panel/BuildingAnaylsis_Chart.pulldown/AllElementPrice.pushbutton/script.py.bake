@@ -1,0 +1,226 @@
+# -*- coding: utf-8 -*-
+# encoding=utf8
+__doc__="分析设计中内墙与外墙的量"
+import os 
+import rpw
+from rpw import revit, DB, UI,db,doc
+from System.Collections.Generic import List
+import json
+from scriptutils import this_script
+from scriptutils.userinput import CommandSwitchWindow
+import subprocess as sp
+from pyrevit.coreutils.console import charts
+from MyLib import Helper
+import csv
+#Get Inside Wall And Outside Wall then show in on the Pin Table
+CurrentView=doc.ActiveView
+
+def CovertToM3(input):
+	return input/35.3147248
+def CovertToM2(input):
+	return input/10.7639104
+def CovertToM(input):
+	return input/3.2808399
+#所有的价格按照m3计算	
+_filename=rpw.ui.forms.select_file('csv(*.csv)|*.csv')
+filename=_filename
+with open(filename,'rb') as csvfile:
+	reader=csv.reader(csvfile)
+
+	for i,rows in enumerate(reader):
+					
+		_rows= [row for row in reader]
+	
+cc=Helper.CoverToString(_rows)
+Price=cc
+
+class Element:	
+	def __init__(self,Input):
+		self.input=Input
+	
+	def Get_Accessmbly_Code(self):
+		return self.input[0]
+		
+	def Get_Price(self):
+		return self.input[1]
+	def Get_Unit(self):
+		return self.input[2]
+	def Get_Tax(self):
+		return self.input[5]
+	def Get_Laber(self):
+		return self.input[4]
+
+class GetElementByAccessmblyCode():
+	def __init__(self,Element):
+		self.Accessmbly_Code=Element.Get_Accessmbly_Code()
+		self.Element_Price=Element.Get_Price()
+		self.Element_Unit=Element.Get_Unit()
+		self.Element_Tax=Element.Get_Tax()
+		self.Element_Laber=Element.Get_Laber()
+	
+	def GetAllElement(self):
+		
+		param_id = DB.ElementId(DB.BuiltInParameter.UNIFORMAT_CODE )
+		parameter_filter = rpw.db.ParameterFilter(param_id, begins=self.Accessmbly_Code)
+		collector =rpw.db.Collector(parameter_filter=parameter_filter,is_type=False).wrapped_elements
+		
+		return collector
+	
+	def GetAllElementCost(self):
+		cost=[]
+
+		for i in self.GetAllElement():
+			symbol=i.type
+			cost.append(symbol.parameters['Cost'].value)
+		return cost
+	
+	def GetAllElementCost_FromInput(self):
+		cost=[]
+
+		for i in self.GetAllElement():
+			cost.append(self.Element_Price+self.Element_Laber)
+		return cost	
+	def GetAllElementquantity_M3(self):
+		quantity=[]
+		for i in self.GetAllElement():
+			try:
+				quantity.append(CovertToM3(i.parameters['Volume'].value))				
+			except:
+				print(i)
+				break
+		return quantity
+	def GetAllElementquantity_M2(self):
+		quantity=[]
+
+		for i in self.GetAllElement():
+			try:
+			
+				quantity.append(CovertToM2(i.parameters['Area'].value))
+			except:
+				print(i)
+				break
+		return quantity
+	
+	def GetAllElementquantity_length(self):
+		quantity=[]
+
+		for i in self.GetAllElement():
+			try:
+			
+				quantity.append(CovertToM(i.parameters['Length'].value))
+			except:
+				print(i)
+				break
+		return quantity
+	#待完成
+	def GetAllElementquantity_Kg(self):
+		pass	
+	#待完成	
+	def GetAllElementquantity_Num(self):
+		quantity=[]
+		for i in self.GetAllElement():
+			try:				
+				quantity.append(1)
+			except:
+				print(i)
+		return quantity		
+		
+	def GetTotalCost(self):
+		singlecost=self.GetAllElementCost_FromInput()
+		if self.Element_Unit=='yuan/m3':
+			singleQuantity=self.GetAllElementquantity_M3()
+		elif self.Element_Unit=='yuan/m2':
+			singleQuantity=self.GetAllElementquantity_M2()
+		elif self.Element_Unit=='yuan/kg':
+			singleQuantity=self.GetAllElementquantity_Kg()
+		elif self.Element_Unit=='yuan/length':
+			singleQuantity=self.GetAllElementquantity_length()
+		elif self.Element_Unit=='yuan/number':
+			singleQuantity=self.GetAllElementquantity_Num()
+		
+		def add(a,b):
+			return a*b
+		_result=map(add,singlecost,singleQuantity)
+		result=round((sum(_result)/10000),2)
+		
+		return result*(1+self.Element_Tax)
+	def Quantity(self):
+		if self.Element_Unit=='yuan/m3':
+			singleQuantity=self.GetAllElementquantity_M3()
+			c="总量：{};{}.".format(singleQuantity,self.Element_Unit)
+		elif self.Element_Unit=='yuan/m2':
+			singleQuantity=self.GetAllElementquantity_M2()
+			c="总量：{};{}.".format(singleQuantity,self.Element_Unit)
+		elif self.Element_Unit=='yuan/kg':
+			singleQuantity=self.GetAllElementquantity_Kg()
+			c="总量：{};{}.".format(singleQuantity,self.Element_Unit)
+		elif self.Element_Unit=='yuan/length':
+			singleQuantity=self.GetAllElementquantity_length()
+			c="总量：{};{}.".format(singleQuantity,self.Element_Unit)
+		elif self.Element_Unit=='yuan/number':
+			singleQuantity=self.GetAllElementquantity_Num()
+			c="总量：{};{}.".format(singleQuantity,self.Element_Unit)
+		
+		return c
+		
+
+# Get Result For Chart		
+class OutPut:
+	def __init__(self,Input):
+		self.Input=Input
+	
+	def Get_All_AccessmblyCode(self):
+		c=[]
+		for i in self.Input:
+			c.append(i[0])
+		return c
+	def Get_All_Name(self):
+		c=[]
+		for i in self.Input:
+			c.append(i[3])
+		return c
+	def Get_All_Price(self):
+		c=[]
+		for i in self.Input:
+			_Price=GetElementByAccessmblyCode(Element(i))
+			Price=_Price.GetTotalCost()
+			c.append(Price)
+		return c
+	
+NewTest=OutPut(Price)
+
+#Set Chart
+test4_types = [charts.PIE_CHART,
+               charts.DOUGHNUT_CHART]
+
+
+
+def get_test_chart(chart_type):
+    chart = this_script.output.make_chart()
+    chart.type = chart_type
+    #chart.set_style('height:150px')
+
+    # chart.options.maintainAspectRatio = True
+    chart.options.title = {'display': True,
+                           'text': '{}表（万元）总价格{}万元'.format("建筑材料价格",sum(NewTest.Get_All_Price())),
+                           'fontSize': 20,
+                           'fontColor': '#000',
+                           'fontStyle': 'bold'}
+
+    return chart
+	
+def test4_chart(chart_type):
+
+    chart = get_test_chart(chart_type)
+
+    chart.data.labels = NewTest.Get_All_Name()
+
+    set_a = chart.data.new_dataset('set_a')
+    set_a.data = NewTest.Get_All_Price()
+    #set_a.backgroundColor = ["#FFEFD5", "#FF4040", "#F98B60"]
+
+
+    chart.randomize_colors()
+    chart.draw()
+	
+test4_chart(charts.PIE_CHART)
