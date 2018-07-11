@@ -12,7 +12,7 @@ picked=revit.pick_element()
 
 wrapedelement=db.Element(picked)
 
-print(wrapedelement.parameters['Diameter'].builtin)
+print(wrapedelement.parameters['尺寸'])
 
 
 

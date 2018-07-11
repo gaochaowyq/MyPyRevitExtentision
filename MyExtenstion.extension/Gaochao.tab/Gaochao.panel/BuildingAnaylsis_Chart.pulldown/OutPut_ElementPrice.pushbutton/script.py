@@ -41,16 +41,25 @@ OUTPUT={
 		"Get_Arc_Element_Roofs":"14-10.20.15",
 		"Get_Arc_Element_Floors":"14-10.20.18",
 		"Get_Arc_Element_Ceiling":"14-10.20.24",
+		"Get_Arc_Element_Planting_Place":"14-10.10.18.12",
+		"Get_Arc_Element_CurtainWall_Element":"14-10.20.21.03",
+		"Get_Arc_Element_Canopy":"14-10.20.48.12",
 		"Get_MEP_Ducts":"14-30.40.03",
 		"Get_MEP_Pipe":"14-30.20.03",
+		"Get_MEP_SupplyPipe":"14-40.10.03",
+		"Get_MEP_DrainPipe":"14-40.20.03",
+		"Get_MEP_FirePipe":["14-40.30.09","14-40.30.12","14-40.30.15"],
 		"Get_MEP_Conduit":"14-50.40"
 		}
+CutomOutPut={
+"Get_Custom_HAVC_Place":"14-60.10"
+}
+#14 40 10 03
+#14 40 20 03
+#14 40 30
 
 # 获取所有表14的Element
-
-                        
-
-
+OUTPUT.update(CutomOutPut)
 o=[]
 for i in OUTPUT:
 	c=eval(i)().OutPut_Total()
@@ -61,11 +70,19 @@ for i in OUTPUT:
 		c.test1_chart()
 		JsonFile=c.ToJson()
 		o.append(JsonFile)
-	except Exception,e:
-		traceback.print_exc()
-with open("e://{filename}.svf.lln".format(filename=_filename),'wb') as f:
+	except:
+		pass
+FilePath=r'c:/BAT_OUT'
+if os.path.exists(FilePath):
+	pass
+else:
+	os.makedirs(FilePath)
+
+Path="{rootpath}//{filename}.svf.lln".format(rootpath=FilePath,filename=_filename)
+
+with open(Path,'wb') as f:
 	pickle.dump(o,f)
-	print("{filename}.svf.lln is Writed".format(filename=_filename))
+	print("{filename}.svf.lln is Writed in {Path}".format(filename=_filename,Path=Path))
 
 	
 
