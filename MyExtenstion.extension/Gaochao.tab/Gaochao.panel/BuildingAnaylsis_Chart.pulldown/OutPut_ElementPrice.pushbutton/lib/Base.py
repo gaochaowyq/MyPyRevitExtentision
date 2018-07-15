@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import rpw
+from CodeInterperator.AssembyCode_Inter import *
 import traceback
-from rpw import db,doc
 from pyrevit import DB
 def CovertToM3(input):
     return input/35.3147248
@@ -25,8 +25,11 @@ class GetAllBase(object):
             collector = rpw.db.Collector(parameter_filter=parameter_filter, is_type=False).get_elements(wrapped=True)
         else:
             if isinstance(self.AssembleCode,str):
-                parameter_filter = rpw.db.ParameterFilter(self.param_id, begins=self.AssembleCode)
-                collector = rpw.db.Collector(parameter_filter=parameter_filter, is_type=False).get_elements(wrapped=True)
+                lexer=Lexer(self.AssembleCode)
+                prase=Parser(lexer)
+                interpreter=CustomInterpreter(prase)
+                collector=interpreter.interpret()
+
             else:
                 collector=[]
                 for i in self.AssembleCode:

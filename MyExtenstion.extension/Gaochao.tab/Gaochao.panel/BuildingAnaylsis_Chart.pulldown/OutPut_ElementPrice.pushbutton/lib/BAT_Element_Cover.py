@@ -164,7 +164,7 @@ class Get_MEP_DrainPipe(MixPipe, GetAllBase):
 class Get_MEP_FirePipe(MixPipe, GetAllBase):
     def __init__(self):
         super(Get_MEP_FirePipe, self).__init__()
-        self.AssembleCode = ["14-40.30.09","14-40.30.12","14-40.30.15"]
+        self.AssembleCode ="14-40.30.09"
         self.ClassName = "消防用水管道"
         self.unit = 'm'
 
@@ -183,3 +183,10 @@ class Get_Custom_HAVC_Place(GetAllBase):
         self.AssembleCode = "14-60.10"
         self.ClassName = "空调架"
         self.unit = 'Count'
+
+class Get_WallFloors(GetAllBase):
+    def __init__(self):
+        super(Get_WallFloors, self).__init__()
+        self.AssembleCode = "14-20.20.03+14-10.20.03"
+        self.ClassName = "空调架"
+        self.unit = 'm2'
