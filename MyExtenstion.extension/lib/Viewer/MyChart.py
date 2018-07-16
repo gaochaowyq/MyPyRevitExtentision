@@ -47,6 +47,7 @@ class MyCharts:
         chart = self.get_test_chart(self.chartype)
         # chart.options.scales = {'yAxes': [{'stacked': True}]}
         # chart.set_height(100)
+
         chart.data.labels =[i for i in self.element.labels ]
 
         set_a = chart.data.new_dataset('set_a')
@@ -63,7 +64,43 @@ class MyCharts:
         labels = [i for i in self.element.labels]
         set_a= self.element.data
 
-        out={'labels':labels,'data':set_a,'titel':self.element.title}
+        out={'labels':labels,'data':set_a}
 
 
         return out
+
+class LineChart:
+    #lables=[""","""","""",""""]
+    #data=[[],[],[],[]]
+    def __init__(self,elements,charttype=charts.LINE_CHART):
+        #element
+        #element.title=''
+        #element.labels=[]
+        # element.data=[]
+        # element.dataname=""
+
+        self.elements=elements
+        self.firstelement=self.elements[0]
+        self.chartype=charttype
+
+    def get_test_chart(self,chart_type):
+        chart = output.make_chart()
+        chart.type = chart_type
+        # chart.set_style('height:150px')
+        # chart.options.maintainAspectRatio = True
+        chart.options.title = {'display': True,
+                               'text': '{}'.format(self.firstelement.title),
+                               'fontSize': 18,
+                               'fontColor': '#000',
+                               'fontStyle': 'bold'}
+        return chart
+
+    def test1_chart(self):
+        chart = self.get_test_chart(self.chartype)
+
+        chart.data.labels =[i for i in self.firstelement.labels ]
+        for i in self.elements:
+            set_b = chart.data.new_dataset(i.DataName)
+            set_b.data =i.data
+        chart.randomize_colors()
+        chart.draw()
