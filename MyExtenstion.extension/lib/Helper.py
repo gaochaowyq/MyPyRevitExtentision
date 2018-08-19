@@ -1,13 +1,15 @@
 def CovertToM3(input):
-	return input/35.3147248
+    return input/35.3147248
 def CovertToM2(input):
-	return input/10.7639104
-	
+    return input/10.7639104
+
 def CovertToMM(input):
-	return input*304.8
-	
+    return input*304.8
+def CovertToFeet(input):
+    return input/304.8
+
 def MmToFeet(input):
-	return input*3.2808399
+    return input*3.2808399
 
 def StrToNumber(Input):
     if isinstance(Input,str):

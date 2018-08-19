@@ -12,7 +12,7 @@ picked=revit.pick_element()
 
 wrapedelement=db.Element(picked)
 
-print(wrapedelement.type.parameters['Keynote'].builtin)
+print(wrapedelement.parameters['Name'].builtin)
 
 
 

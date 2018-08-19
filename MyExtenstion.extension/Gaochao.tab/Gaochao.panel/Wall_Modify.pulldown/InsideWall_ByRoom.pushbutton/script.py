@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*-
 __doc__="分析设计中内墙与外墙的量"
+
 from System.Collections.Generic import List
 import clr
+import System
+import sys
+#path=r"C:\Program Files\Dynamo\Dynamo Core\2\libg_224"
+#sys.path.append(path)
+
+#clr.AddReferenceToFile("LibG.Managed")
+#clr.AddReferenceToFile("'LibG.ProtoInterface")
 clr.AddReference('ProtoGeometry')
 # Import RevitNodes
 clr.AddReference("RevitNodes")
@@ -29,27 +37,12 @@ import subprocess as sp
 from Autodesk.Revit.DB.Architecture import Room
 from collections import namedtuple
 from Helper import *
-
-"""
-#Wall Selection
-selection = ui.Selection()
-
-selected_rooms = [e for e in selection.elements if isinstance(e, Room)]
-if not selected_rooms:
-    UI.TaskDialog.Show('MakeWalls', 'You need to select at lest one Room.')
-    sys.exit()
-Wall_types = rpw.db.Collector(of_category='OST_Walls', is_type=True).elements
-Wall_type_options = {DB.Element.Name.GetValue(t): t for t in Wall_types}
-
-Wall_type = ui.forms.SelectFromList('Make Wall', Wall_type_options,
-                                     description='Select Wall Type')
-Wall_Width=CovertToMM(Wall_type.Width)
-print(Wall_Width)
-"""
-
 def OffsetLines(Lines,Distance):
     #covert to dynamo geometry
+    print(Lines)
     Lines=[i.ToProtoType() for i in Lines]
+    print(Lines)
+
     polyline=PolyCurve.ByJoinedCurves(Lines)
     OffstedPolyline=PolyCurve.Offset(polyline,Distance,False)
     #corvet to revit geometry
