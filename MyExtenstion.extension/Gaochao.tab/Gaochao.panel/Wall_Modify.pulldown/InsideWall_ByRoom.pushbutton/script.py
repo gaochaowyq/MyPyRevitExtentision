@@ -74,10 +74,16 @@ class BAT_Room:
         except:
             WallFinishName = self.WrapedRoom.parameters['Wall Finish'].value
         param_id = DB.ElementId(DB.BuiltInParameter.SYMBOL_NAME_PARAM)
-        parameter_filter = db.ParameterFilter(param_id, equals=WallFinishName)
-        WallType = db.Collector(of_category='OST_Walls',parameter_filter=parameter_filter,is_type=True).get_first()
+        if WallFinishName:
+            parameter_filter = db.ParameterFilter(param_id, equals=WallFinishName)
+            WallType = db.Collector(of_category='OST_Walls',parameter_filter=parameter_filter,is_type=True).get_first()
+            return  WallType
 
-        return  WallType
+        else:
+            return None
+
+
+
     @property
     def WallFinishTypeId(self):
         if self.WallFinishType is not None:
@@ -85,28 +91,36 @@ class BAT_Room:
         else:
             return None
     def Offseted_RoomBoundary(self):
-        room_boundary_options = DB.SpatialElementBoundaryOptions()
-        room_boundary =self.Room.GetBoundarySegments(room_boundary_options)[0]
-        lines = [i.GetCurve() for i in room_boundary]
-        Wall_Width = CovertToMM(self.WallFinishType.Width)
-        polyline = OffsetLines(lines, -(Wall_Width / 2))
-        return polyline
+        try:
+            room_boundary_options = DB.SpatialElementBoundaryOptions()
+            room_boundary =self.Room.GetBoundarySegments(room_boundary_options)[0]
+            lines = [i.GetCurve() for i in room_boundary]
+            Wall_Width = CovertToMM(self.WallFinishType.Width)
+            polyline = OffsetLines(lines, -(Wall_Width / 2))
+            return polyline
+        except:
+            print("{RoomName}Offset Have Proble".format(RoomName=self.RoomName))
+            return None
     def MakeWall(self):
         @rpw.db.Transaction.ensure('Make Wall')
         def make_wall():
             Wall_curves =List[DB.Curve]()
-            for boundary_segment in self.Offseted_RoomBoundary():
-                try:
-                    Wall_curves.Add(boundary_segment)       # 2015, dep 2016
-                except AttributeError:
-                    Wall_curves.Add(boundary_segment)  # 2017
+            if self.Offseted_RoomBoundary():
+                for boundary_segment in self.Offseted_RoomBoundary():
+                    try:
+                        Wall_curves.Add(boundary_segment)       # 2015, dep 2016
+                    except AttributeError:
+                        Wall_curves.Add(boundary_segment)  # 2017
 
             WallType =self.WallFinishType
 
             level =self.RoomLevelId
-            for i in Wall_curves:
-                WallID=WallType.Id
-                DB.Wall.Create(doc,i,WallID,level,self.RoomHeight,0,False,False)
+            if WallType and Wall_curves:
+                for i in Wall_curves:
+                    WallID=WallType.Id
+                    DB.Wall.Create(doc,i,WallID,level,self.RoomHeight,0,False,False)
+            else:
+                print("{RoomName}缺少内墙类型".format(RoomName=self.RoomName))
         make_wall()
 
 for _Room in Rooms:
@@ -116,5 +130,5 @@ for _Room in Rooms:
         Room.MakeWall()
         print("{RoomName} 内墙面被创建".format(RoomName=Room.RoomName))
     else:
-        print("{RoomName} 没有内墙面".format(RoomName=Room.RoomName))
+        print("{RoomName} 墙体因某些原因没有被创建".format(RoomName=Room.RoomName))
 
