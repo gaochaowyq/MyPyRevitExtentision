@@ -230,6 +230,7 @@ class BAT_Room:
                 else:
                     WallID=WallType.Id
                     NewWall=DB.Wall.Create(doc,i,WallID,level,self.RoomHeight,0,False,False)
+                    NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
 
                     DB.JoinGeometryUtils.JoinGeometry(doc, NewWall, OldWall)
         try:
