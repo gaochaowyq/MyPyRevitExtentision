@@ -7,6 +7,8 @@ def CovertToMM(input):
     return input*304.8
 def CovertToFeet(input):
     return input/304.8
+def CovertToM(input):
+    return input*304.8
 
 def MmToFeet(input):
     return input*3.2808399
