@@ -223,16 +223,23 @@ class BAT_Room:
 
             level =self.RoomLevelId
             for i,j in zip(Wall_curves,Aj_WallId):
-                print("well")
-                OldWall = doc.GetElement(j)
-                if OldWall.WallType.FamilyName=="Curtain Wall":
-                    pass
-                else:
-                    WallID=WallType.Id
-                    NewWall=DB.Wall.Create(doc,i,WallID,level,self.RoomHeight,0,False,False)
-                    NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
+                try:
+                    OldWall = doc.GetElement(j)
+                    OldWall = OldWall.GetTypeId()
+                    OldWall = doc.GetElement(OldWall)
+                    FamilyName=OldWall.get_Parameter(DB.BuiltInParameter.ALL_MODEL_FAMILY_NAME).AsString()
+                    if FamilyName=="Curtain Wall" or FamilyName=="玻璃幕墙":
+                        pass
+                    elif FamilyName==None:
+                        pass
+                    else:
+                        WallID=WallType.Id
+                        NewWall=DB.Wall.Create(doc,i,WallID,level,self.RoomHeight,0,False,False)
+                        NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
 
-                    DB.JoinGeometryUtils.JoinGeometry(doc, NewWall, OldWall)
+                        DB.JoinGeometryUtils.JoinGeometry(doc, NewWall, OldWall)
+                except Exception as e:
+                    print(e)
         try:
             make_wall()
             print("{RoomName} 内墙面被创建".format(RoomName=Room.RoomName))
