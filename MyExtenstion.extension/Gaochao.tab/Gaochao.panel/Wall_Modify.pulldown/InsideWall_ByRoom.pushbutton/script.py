@@ -70,16 +70,11 @@ class GetElementError(BaseError):
 
 
 def OffsetLines(Lines,Distance):
-    #covert to dynamo geometry
-    #try:
-    Lines=[i.ToProtoType() for i in Lines]
-    #except:
-    #    print("ToProtoType is Failed")
-    #    raise GetRevitServiceError
-    polyline=PolyCurve.ByJoinedCurves(Lines)
-    OffstedPolyline=PolyCurve.Offset(polyline,Distance,False)
-    result = PolyCurve.Explode(OffstedPolyline)
-    result = [i.ToRevitType() for i in result]
+    CurveLoop = DB.CurveLoop.Create(Lines)
+    NewCurve = DB.CurveLoop.CreateViaOffset(CurveLoop, CovertToFeet(Distance), DB.XYZ(0, 0, 1))
+    result=[]
+    for i in NewCurve.GetCurveLoopIterator():
+        result.append(i)
     return result
 
 #GetAllRoomAndWallFinish
@@ -225,19 +220,19 @@ class BAT_Room:
             for i,j in zip(Wall_curves,Aj_WallId):
                 try:
                     OldWall = doc.GetElement(j)
-                    OldWall = OldWall.GetTypeId()
-                    OldWall = doc.GetElement(OldWall)
-                    FamilyName=OldWall.get_Parameter(DB.BuiltInParameter.ALL_MODEL_FAMILY_NAME).AsString()
+                    _OldWall = OldWall.GetTypeId()
+                    _OldWall = doc.GetElement(_OldWall)
+                    FamilyName=_OldWall.get_Parameter(DB.BuiltInParameter.ALL_MODEL_FAMILY_NAME).AsString()
+                    print(FamilyName)
                     if FamilyName=="Curtain Wall" or FamilyName=="玻璃幕墙":
                         pass
                     elif FamilyName==None:
                         pass
-                    else:
+                    elif FamilyName=="Basic Wall":
                         WallID=WallType.Id
                         NewWall=DB.Wall.Create(doc,i,WallID,level,self.RoomHeight,0,False,False)
                         NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
-
-                        DB.JoinGeometryUtils.JoinGeometry(doc, NewWall, OldWall)
+                        DB.JoinGeometryUtils.JoinGeometry(doc,NewWall,OldWall)
                 except Exception as e:
                     print(e)
         try:
