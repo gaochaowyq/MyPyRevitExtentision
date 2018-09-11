@@ -1,29 +1,12 @@
 # -*- coding: utf-8 -*-
 __doc__="分析设计中内墙与外墙的量"
 
-from System.Collections.Generic import List
-import clr
-import System
-import sys
-
-clr.AddReference("RevitAPI")
-import Autodesk
-clr.AddReference('ProtoGeometry')
-from Autodesk.DesignScript.Geometry import *
-# Import RevitNodes
-clr.AddReference("RevitNodes")
-
-# Import Revit elements
-from Revit.Elements import *
-import Revit
-
-clr.ImportExtensions(Revit.GeometryConversion)
 
 
 import rpw
 import pyrevit
 from rpw import db,doc
-from pyrevit import revit,DB,UI
+from pyrevit import revit,DB,UI,forms,HOST_APP
 #######################
 
 #######################
@@ -77,10 +60,12 @@ def OffsetLines(Lines,Distance):
         result.append(i)
     return result
 
-#GetAllRoomAndWallFinish
-#Rooms=db.Collector(of_category='OST_Rooms').get_elements(wrapped=False)
-#Select All Room
+#Select Room
 Rooms= revit.get_selection()
+
+selected_switch =forms.CommandSwitchWindow.show(["创建建筑楼板","创建内墙","创建吊顶"],
+                                   message='选择要创建的构件')
+
 class MassSelectionFilter(UI.Selection.ISelectionFilter):
     # standard API override function
     def AllowElement(self, element):
@@ -94,16 +79,12 @@ class MassSelectionFilter(UI.Selection.ISelectionFilter):
         return False
 try:
     msfilter = MassSelectionFilter()
-    selection_list = revit.pick_rectangle(pick_filter=msfilter)
-
-    filtered_list = []
-    for el in selection_list:
-        filtered_list.append(el.Id)
-
-    Rooms.set_to(filtered_list)
+    refs = HOST_APP.uidoc.Selection.PickObjects(UI.Selection.ObjectType.Element, msfilter)
+    return_values =[HOST_APP.doc.GetElement(ref)for ref in refs]
+    Rooms.set_to(return_values)
     revit.uidoc.RefreshActiveView()
-except Exception:
-    pass
+except Exception as e:
+    print(e)
 ############################################################################
 
 class BAT_Room:
@@ -112,7 +93,6 @@ class BAT_Room:
         self.WrapedRoom=db.Element(self.Room)
         self.RoomLevelId=self.Room.Level.Id
         self.RoomLevel = self.Room.Level
-        print("Get Room {}".format(self.RoomName))
     @property
     def RoomName(self):
         p=DB.BuiltInParameter.ROOM_NAME
@@ -126,13 +106,14 @@ class BAT_Room:
         try:
             Heigth = self.Room.get_Parameter(p).AsDouble()
             print("{RoomName}房间高度为{Height}".format(RoomName=Room.RoomName, Height=Heigth))
-        except:
-            print("{RoomName}房间无法获取高度".format(RoomName=Room.RoomName))
-            raise
-        return Heigth
+            return Heigth
+        except Exception as e:
+            print("{Room}不能获取房间高度：{Problem}".format(Room=self.RoomName, Problem=e))
+
     @property
     def RoomBase(self):
-        return None
+        RoomBaseOffset = self.Room.get_Parameter(DB.BuiltInParameter.ROOM_LOWER_OFFSET).AsInteger()
+        return RoomBaseOffset
     @property
     def WallFinishType(self):
         try:
@@ -141,12 +122,11 @@ class BAT_Room:
             parameter_filter = db.ParameterFilter(param_id, equals=WallFinishName)
             WallType = db.Collector(of_category='OST_Walls', parameter_filter=parameter_filter,
                                     is_type=True).get_first()
-            if WallType:
-                return WallType
-            else:
-                raise WallTypeError(self.RoomName)
+
+            return WallType
+
         except WallTypeError as e:
-            print(e)
+            print("{Room}不能获取建筑墙面类型：{Problem}".format(Room=self.RoomName, Problem=e))
     @property
     def FloorFinishType(self):
         try:
@@ -155,13 +135,11 @@ class BAT_Room:
             parameter_filter = db.ParameterFilter(param_id, equals=WallFinishName.AsString())
             FloorType = db.Collector(of_category='OST_Floors', parameter_filter=parameter_filter,
                                     is_type=True).get_first(wrapped=False)
-            if FloorType:
-                return FloorType
-            else:
-                raise GetElementError("Floor")
+
+            return FloorType
+
         except Exception as e:
-            print(e)
-            print("Cant Get Floor Type")
+            print("{Room}不能获取建筑楼面类型：{Problem}".format(Room=self.RoomName, Problem=e))
 
     @property
     def CeilingFinishType(self):
@@ -174,102 +152,108 @@ class BAT_Room:
 
             return CeilingType
         except Exception as e:
-            print(e)
+            print("{Room}不能获取吊顶类型：{Problem}".format(Room=self.RoomName,Problem=e))
 
     @property
     def WallFinishTypeId(self):
-        if self.WallFinishType is not None:
+        try:
             return  self.WallFinishType.Id
-        else:
-            return None
+        except Exception as e:
+            print("{Room}不能获取墙面类型ID：{Problem}".format(Room=self.RoomName, Problem=e))
     def RoomBoundary(self):
         room_boundary_options = DB.SpatialElementBoundaryOptions()
-        room_boundary = self.Room.GetBoundarySegments(room_boundary_options)[0]
+        room_boundary = self.Room.GetBoundarySegments(room_boundary_options)
         return room_boundary
-
 
     def Offseted_RoomBoundary(self):
         try:
-            room_boundary =self.RoomBoundary()
+            room_boundary =self.RoomBoundary()[0]
             Room_Aj_WallId=[i.ElementId for i in room_boundary]
-
             lines = [i.GetCurve() for i in room_boundary]
-
             Wall_Width = CovertToMM(self.WallFinishType.Width)
 
             polyline = OffsetLines(lines, -(Wall_Width / 2))
             return [polyline,Room_Aj_WallId]
         except Exception as e:
-            print("{RoomName}内墙轮廓线生成失败，请查看单位设置是否为mm:{Problem}".format(RoomName=Room.RoomName,Problem=e))
+            print("{RoomName}内墙轮廓线生成失败，请查看单位或轮廓线的连续性:{Problem}".format(RoomName=Room.RoomName,Problem=e))
+    def ParaForMakeWall(self):
+        Wall_curves = List[DB.Curve]()
+        Aj_WallId = List[DB.ElementId]()
+        for boundary_segment, Room_Aj_WallId in zip(self.Offseted_RoomBoundary()[0], self.Offseted_RoomBoundary()[1]):
+            try:
+                Aj_WallId.Add(Room_Aj_WallId)
+                Wall_curves.Add(boundary_segment)  # 2015, dep 2016
+            except AttributeError:
+                Wall_curves.Add(boundary_segment)  # 2017
+        return [Wall_curves,Aj_WallId]
 
     def MakeWall(self):
         @rpw.db.Transaction.ensure('Make Wall')
         def make_wall():
-            Wall_curves =List[DB.Curve]()
-            Aj_WallId=List[DB.ElementId]()
-            for boundary_segment,Room_Aj_WallId in zip(self.Offseted_RoomBoundary()[0],self.Offseted_RoomBoundary()[1]):
-                try:
-                    Aj_WallId.Add(Room_Aj_WallId)
-                    Wall_curves.Add(boundary_segment)       # 2015, dep 2016
-                except AttributeError:
-                    Wall_curves.Add(boundary_segment)  # 2017
-
-            WallType =self.WallFinishType
-
+            _ParaForMakeWall=self.ParaForMakeWall()
             level =self.RoomLevelId
-            for i,j in zip(Wall_curves,Aj_WallId):
+            for i,j in zip(_ParaForMakeWall[0],_ParaForMakeWall[1]):
                 try:
                     OldWall = doc.GetElement(j)
                     _OldWall = OldWall.GetTypeId()
                     _OldWall = doc.GetElement(_OldWall)
+
                     FamilyName=_OldWall.get_Parameter(DB.BuiltInParameter.ALL_MODEL_FAMILY_NAME).AsString()
-                    print(FamilyName)
                     if FamilyName=="Curtain Wall" or FamilyName=="玻璃幕墙":
-                        pass
+                        print("{RoomName}玻璃幕墙无内墙".format(RoomName=Room.RoomName))
                     elif FamilyName==None:
                         pass
-                    elif FamilyName=="Basic Wall":
-                        WallID=WallType.Id
+                    elif FamilyName=="Basic Wall" or FamilyName=="基础墙":
+                        WallID=self.WallFinishTypeId
                         NewWall=DB.Wall.Create(doc,i,WallID,level,self.RoomHeight,0,False,False)
                         NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
                         DB.JoinGeometryUtils.JoinGeometry(doc,NewWall,OldWall)
+                        print("{RoomName}内墙创建成功".format(RoomName=Room.RoomName))
+
                 except Exception as e:
-                    print(e)
-        try:
-            make_wall()
-            print("{RoomName} 内墙面被创建".format(RoomName=Room.RoomName))
-        except Exception as e:
-            print(e)
-            print("{RoomName} 内墙未被创建".format(RoomName=Room.RoomName))
+                    print("{RoomName}内墙创建失败：{Problem}".format(RoomName=Room.RoomName,Problem=e))
+
+        make_wall()
+
+
     def MakeFloor(self):
         @rpw.db.Transaction.ensure('MakeFloor')
         def make_floor():
-
-            Wall_curves =List[DB.Curve]()
-            lines = [i.GetCurve() for i in self.RoomBoundary()]
-            for boundary_segment in lines:
-                try:
-                    Wall_curves.Add(boundary_segment)       # 2015, dep 2016
-                except AttributeError:
-                    Wall_curves.Add(boundary_segment)  # 2017
-
+            Floor_CurveArray = DB.CurveArray()
+            for boundary_segment in self.RoomBoundary()[0]:
+                Floor_CurveArray.Append(boundary_segment.GetCurve())
+                #Floor_CurveArray.Append(Wall_curves)
             FloorType =self.FloorFinishType
-
-
-
             level =self.RoomLevel
-            Floor_CurveArray=DB.CurveArray()
-            for i in Wall_curves:
-                Floor_CurveArray.Append(i)
-            _doc = pyrevit._HostApplication(__revit__).doc.Create
 
-            _doc.NewFloor(Floor_CurveArray,FloorType,level,None)
-        try:
-            make_floor()
-            print("{RoomName} 建筑楼面被创建".format(RoomName=Room.RoomName))
-        except Exception as e:
-            print(e)
-            print("{RoomName} 建筑楼面未被创建".format(RoomName=Room.RoomName))
+            _doc = pyrevit._HostApplication(__revit__).doc.Create
+            try:
+                self.NewFloor=_doc.NewFloor(Floor_CurveArray,FloorType,level,None)
+                self.NewFloor.get_Parameter(DB.BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM).Set(self.RoomBase)
+                print("{RoomName}建筑楼板被创建".format(RoomName=self.RoomName))
+            except Exception as e:
+                self.NewFloor=None
+                print("{RoomName}建筑楼板未能被创建:{Problem}".format(RoomName=Room.RoomName, Problem=e))
+        @rpw.db.Transaction.ensure('MakeFloor')
+        def make_floor_Open(Floor):
+            _doc = HOST_APP.doc.Create
+            boundary=[]
+            for i in range(0,len(self.RoomBoundary())):
+                if i!=0:
+                    boundary.append(self.RoomBoundary()[i])
+            for boundary_segment in boundary:
+                Open_CurveArray = DB.CurveArray()
+                for i in boundary_segment:
+                    Open_CurveArray.Append(i.GetCurve())
+                try:
+                    _doc.NewOpening(Floor, Open_CurveArray, True)
+                    print("OpeningCreated")
+                except Exception as e:
+                    print(e)
+        make_floor()
+        if self.NewFloor!=None:
+            make_floor_Open(self.NewFloor)
+
 
 ###############################################
     def MakeCeiling(self):
@@ -282,11 +266,7 @@ class BAT_Room:
                     Wall_curves.Add(boundary_segment)       # 2015, dep 2016
                 except AttributeError:
                     Wall_curves.Add(boundary_segment)  # 2017
-
             CeilingType =self.CeilingFinishType
-
-
-
             level =self.RoomLevel
             Floor_CurveArray=DB.CurveArray()
             for i in Wall_curves:
@@ -300,10 +280,16 @@ class BAT_Room:
         except Exception as e:
             print(e)
             print("{RoomName} 吊顶未被创建".format(RoomName=Room.RoomName))
+
+
 for _Room in Rooms:
     Room=BAT_Room(_Room)
-    Room.MakeWall()
-    Room.MakeFloor()
+    if selected_switch=="创建内墙":
+        Room.MakeWall()
+    elif selected_switch=="创建建筑楼板":
+        Room.MakeFloor()
+    else:
+        print("{}功能还没有开放,敬请期待".format(selected_switch))
     #Room.MakeCeiling()
 
 
