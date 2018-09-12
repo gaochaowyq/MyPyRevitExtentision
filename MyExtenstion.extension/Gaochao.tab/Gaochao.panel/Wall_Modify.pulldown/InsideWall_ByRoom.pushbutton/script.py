@@ -163,6 +163,15 @@ class BAT_Room:
     def RoomBoundary(self):
         room_boundary_options = DB.SpatialElementBoundaryOptions()
         room_boundary = self.Room.GetBoundarySegments(room_boundary_options)
+        Index=[]
+
+        Length=[]
+        for i in room_boundary:
+            CurveLoop = DB.CurveLoop.Create([j.GetCurve() for j in i])
+            Length.append(CurveLoop.GetExactLength())
+        print(Length)
+
+
         return room_boundary
 
     def Offseted_RoomBoundary(self):
