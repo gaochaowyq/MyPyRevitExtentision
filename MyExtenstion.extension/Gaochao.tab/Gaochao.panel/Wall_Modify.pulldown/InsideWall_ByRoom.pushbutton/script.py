@@ -69,7 +69,7 @@ selected_switch =forms.CommandSwitchWindow.show(["创建建筑楼板","创建内
 class MassSelectionFilter(UI.Selection.ISelectionFilter):
     # standard API override function
     def AllowElement(self, element):
-        if element.Category.Name == "Rooms":
+        if element.Category.Name == "Rooms" or element.Category.Name == "房间":
             return True
         else:
             return False
@@ -169,9 +169,6 @@ class BAT_Room:
         for i in room_boundary:
             CurveLoop = DB.CurveLoop.Create([j.GetCurve() for j in i])
             Length.append(CurveLoop.GetExactLength())
-        print(Length)
-
-
         return room_boundary
 
     def Offseted_RoomBoundary(self):
@@ -212,7 +209,7 @@ class BAT_Room:
                         print("{RoomName}玻璃幕墙无内墙".format(RoomName=Room.RoomName))
                     elif FamilyName==None:
                         pass
-                    elif FamilyName=="Basic Wall" or FamilyName=="基础墙":
+                    elif FamilyName=="Basic Wall" or FamilyName=="基础墙" or _OldWall.Category.Name=="Structural Columns" or _OldWall.Category.Name=="结构柱" :
                         WallID=self.WallFinishTypeId
                         NewWall=DB.Wall.Create(doc,i,WallID,level,self.RoomHeight,0,False,False)
                         NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
