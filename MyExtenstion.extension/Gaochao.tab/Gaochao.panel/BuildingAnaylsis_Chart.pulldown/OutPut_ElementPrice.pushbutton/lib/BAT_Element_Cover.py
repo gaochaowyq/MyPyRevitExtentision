@@ -164,7 +164,7 @@ class Get_MEP_DrainPipe(MixPipe, GetAllBase):
 class Get_MEP_FirePipe(MixPipe, GetAllBase):
     def __init__(self):
         super(Get_MEP_FirePipe, self).__init__()
-        self.AssembleCode ="14-40.30.09"
+        self.AssembleCode ="14-40.30.09+14-40.30.12+14-40.30.15"
         self.ClassName = "消防用水管道"
         self.unit = 'm'
 
