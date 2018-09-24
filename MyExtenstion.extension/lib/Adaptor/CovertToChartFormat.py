@@ -23,6 +23,29 @@ class CoverToChartFormat:
         out=Element()
         out.setData(Data)
         out.setLabale(Labale)
-        out.setTitle("{} 单位 {}".format(self.data[0]['Assembly Description'].decode('GB2312','strict'),self.data[0]['Unit'].decode('GB2312','strict')))
+
+        out.setTitle("{}{}  单位 {}".format(self.data[0]['Assembly Description'].decode('GB2312','strict'),self.data[0]["PhaseCreated"],self.data[0]['Unit'].decode('GB2312','strict')))
+
+
+        return out
+
+class CoverToChartFormat_Group:
+    def __init__(self,Group):
+        self.Group=Group
+        self.data=Group.Group
+
+    def OutPut(self):
+        Labale=[]
+        Data=[]
+        for i in self.data:
+            Labale.append("{}".format(i['ElementName'].decode('GB2312','strict')))
+            Data.append(round(i['Qutity'],1))
+        out=Element()
+        out.setData(Data)
+        out.setLabale(Labale)
+
+        out.setTitle("{}（{}）  单位 {}".format(self.data[0]['Assembly Description'].decode('GB2312','strict'),self.Group.Name,self.data[0]['Unit'].decode('GB2312','strict')))
+
+
         return out
 

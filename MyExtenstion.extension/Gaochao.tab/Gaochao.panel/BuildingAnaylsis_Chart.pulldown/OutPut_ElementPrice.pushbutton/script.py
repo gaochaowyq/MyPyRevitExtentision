@@ -14,6 +14,7 @@ import subprocess as sp
 import Helper
 from Viewer.MyChart import MyCharts
 from Adaptor.CovertToChartFormat import CoverToChartFormat as CTC
+from Adaptor.CovertToChartFormat import CoverToChartFormat_Group as CTC_G
 import pickle
 import csv,codecs, cStringIO
 import traceback
@@ -62,6 +63,7 @@ CutomOutPut={
 # 获取所有表14的Element
 #OUTPUT.update(CutomOutPut)
 o=[]
+"""
 for i in OUTPUT:
 
 	c=eval(i.keys()[0])().OutPut_Total()
@@ -72,8 +74,22 @@ for i in OUTPUT:
 		c.test1_chart()
 		JsonFile=c.ToJson()
 		o.append(JsonFile)
-	except:
+	except Exception as e:
 		pass
+"""
+
+for i in OUTPUT:
+	cc=eval(i.keys()[0])().OutPut_Total_New()
+	for c in cc:
+		try:
+			output=CTC_G(c)
+			output=output.OutPut()
+			c=MyCharts(output)
+			c.test1_chart()
+			JsonFile=c.ToJson()
+			o.append(JsonFile)
+		except Exception as e:
+			print(e)
 FilePath=r'c:/BAT_OUT'
 if os.path.exists(FilePath):
 	pass
