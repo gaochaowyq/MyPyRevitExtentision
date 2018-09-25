@@ -89,7 +89,7 @@ for i in OUTPUT:
 			JsonFile=c.ToJson()
 			o.append(JsonFile)
 		except Exception as e:
-			print(e)
+			pass
 FilePath=r'c:/BAT_OUT'
 if os.path.exists(FilePath):
 	pass

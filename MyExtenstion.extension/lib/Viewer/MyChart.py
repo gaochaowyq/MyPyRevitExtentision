@@ -64,7 +64,7 @@ class MyCharts:
         labels = [i for i in self.element.labels]
         set_a= self.element.data
 
-        out={'labels':labels,'data':set_a}
+        out={'labels':labels,'data':set_a,"titel":self.element.title}
 
 
         return out

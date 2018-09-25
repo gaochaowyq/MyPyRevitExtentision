@@ -153,9 +153,9 @@ class GetAllBase(object):
         Group2 = Group(rule2)
         Group3=Group(rule3)
         for i in _Group.Group:
-            if i['PhaseCreated']=="Existing":
+            if i['PhaseCreated'] in ["Existing","现有类型"]:
                 Group1.Set(i)
-            if i['PhaseCreated']=="New Construction":
+            if i['PhaseCreated'] in ["New Construction","新构造"]:
                 Group2.Set(i)
             if i['PhaseDemolished']!="None":
                 Group3.Set(i)
