@@ -2,11 +2,12 @@
 __doc__="分析设计中内墙与外墙的量"
 
 
-
+import  sys
 import rpw
 import pyrevit
 from rpw import db,doc
 from pyrevit import revit,DB,UI,forms,HOST_APP
+import System
 #######################
 
 #######################
@@ -19,37 +20,6 @@ import subprocess as sp
 from Autodesk.Revit.DB.Architecture import Room
 from collections import namedtuple
 from Helper import *
-class BaseError(Exception):
-    pass
-class GetRevitServiceError(BaseError):
-    pass
-class OffsetError(BaseError):
-    def __init__(self,msg):
-        self.msg = msg
-    def __str__(self):
-        return 'PolyLine Offset Have Problem With Distance {}'.format(self.msg)
-class WallTypeError(BaseError):
-    def __init__(self,RoomName):
-        self.msg = RoomName
-    def __str__(self):
-        return '{}没有设置内墙类型'.format(self.msg)
-class RoomOffsetError(BaseError):
-    def __init__(self,RoomName):
-        self.msg = RoomName
-    def __str__(self):
-        return '{} Can Not Be Offset'.format(self.msg)
-class MakeWallError(BaseError):
-    def __init__(self,RoomName):
-        self.msg = RoomName
-    def __str__(self):
-        return '{} Can Not Create Wall'.format(self.msg)
-class GetElementError(BaseError):
-    def __init__(self, msg):
-        self.msg = msg
-
-    def __str__(self):
-        return "{} Can Not Get".format(self.msg)
-
 
 
 def OffsetLines(Lines,Distance):
@@ -97,9 +67,7 @@ class BAT_Room:
     def RoomName(self):
         p=DB.BuiltInParameter.ROOM_NAME
         Name=self.Room.get_Parameter(p).AsString()
-
         return Name
-
     @property
     def RoomHeight(self):
         p = DB.BuiltInParameter.ROOM_HEIGHT
@@ -109,7 +77,6 @@ class BAT_Room:
             return Heigth
         except Exception as e:
             print("{Room}不能获取房间高度：{Problem}".format(Room=self.RoomName, Problem=e))
-
     @property
     def RoomBase(self):
         RoomBaseOffset = self.Room.get_Parameter(DB.BuiltInParameter.ROOM_LOWER_OFFSET).AsInteger()
@@ -125,8 +92,9 @@ class BAT_Room:
 
             return WallType
 
-        except WallTypeError as e:
-            print("{Room}不能获取建筑墙面类型：{Problem}".format(Room=self.RoomName, Problem=e))
+        except Exception as e:
+            print("{Room}不能获取建筑墙面类型：{Problem}".format(Room=self.RoomName, Problem=e.__traceback__))
+            sys.exit()
     @property
     def FloorFinishType(self):
         try:
@@ -135,7 +103,6 @@ class BAT_Room:
             parameter_filter = db.ParameterFilter(param_id, equals=WallFinishName.AsString())
             FloorType = db.Collector(of_category='OST_Floors', parameter_filter=parameter_filter,
                                     is_type=True).get_first(wrapped=False)
-
             return FloorType
 
         except Exception as e:
@@ -169,7 +136,10 @@ class BAT_Room:
         for i in room_boundary:
             CurveLoop = DB.CurveLoop.Create([j.GetCurve() for j in i])
             Length.append(CurveLoop.GetExactLength())
-        return room_boundary
+        newLength=sorted(Length)
+        _room_boundary=[room_boundary[Length.index(i)] for i in newLength]
+
+        return _room_boundary
 
     def Offseted_RoomBoundary(self):
         try:
@@ -239,11 +209,12 @@ class BAT_Room:
                 print("{RoomName}建筑楼板被创建".format(RoomName=self.RoomName))
             except Exception as e:
                 self.NewFloor=None
-                print("{RoomName}建筑楼板未能被创建:{Problem}".format(RoomName=Room.RoomName, Problem=e))
+                print("{RoomName}建筑楼板未能被创建:{Problem}".format(RoomName=Room.RoomName, Problem=e.__traceback__))
         @rpw.db.Transaction.ensure('MakeFloor')
         def make_floor_Open(Floor):
             _doc = HOST_APP.doc.Create
             boundary=[]
+            BoundaryArea=[i for i in self.RoomBoundary()]
             for i in range(0,len(self.RoomBoundary())):
                 if i!=0:
                     boundary.append(self.RoomBoundary()[i])
