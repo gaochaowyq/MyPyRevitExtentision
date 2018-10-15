@@ -16,7 +16,6 @@ from Adaptor.CovertToChartFormat import CoverToChartFormat as CTC
 import pickle
 import csv, codecs, cStringIO
 import traceback
-from BAT_Element_Cover import *
 
 # Get Inside Wall And Outside Wall then show in on the Pin Table
 CurrentView = doc.ActiveView
