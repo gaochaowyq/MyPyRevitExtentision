@@ -6,7 +6,6 @@ from rpw import revit, db, ui,DB,UI
 from rpw.ui.forms import FlexForm, Label, ComboBox, TextBox, TextBox,Separator, Button
 import json
 
-from MyLib import Helper
 doc = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
 
@@ -48,6 +47,6 @@ def ReadExtensionData(wall,ID):
 	print(retrievedData)
 	
 
-#point=DB.XYZ(1,1,1)	
-#c=CreatExtensionStorage(Picked_Selection,point)	
-ReadExtensionData(Picked_Selection,"d64e3bab-7b93-415a-a20a-4d09ec106aaa")
+point=DB.XYZ(1,1,1)
+c=CreatExtensionStorage(Picked_Selection,point)
+#ReadExtensionData(Picked_Selection,"d64e3bab-7b93-415a-a20a-4d09ec106aaa")

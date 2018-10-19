@@ -13,7 +13,10 @@ import subprocess as sp
 title="根据系统名称选择构件"
 description="根据系统名称选择构件"
 value=rpw.ui.forms.TextInput(title, default=None, description=description, sort=True, exit_on_close=True)
-MEP_System_Name=value
+MEP_System_Name=value.split("+")
+
+print([MEP_System_Name])
+
 
 #RBS_PIPING_SYSTEM_TYPE_PARAM
 def Select_By_MEPSystem():
@@ -27,11 +30,11 @@ def Select_By_MEPSystem():
     for elid in elements:
         el = revit.doc.GetElement(elid)
         try:
-            if el.get_Parameter(DB.BuiltInParameter.RBS_PIPING_SYSTEM_TYPE_PARAM).AsValueString() == MEP_System_Name:
+            if el.get_Parameter(DB.BuiltInParameter.RBS_PIPING_SYSTEM_TYPE_PARAM).AsValueString() in (MEP_System_Name):
                 element_to_isolate.append(el)
-            elif el.get_Parameter(DB.BuiltInParameter.RBS_DUCT_SYSTEM_TYPE_PARAM).AsValueString() == MEP_System_Name:
+            elif el.get_Parameter(DB.BuiltInParameter.RBS_DUCT_SYSTEM_TYPE_PARAM).AsValueString() in (MEP_System_Name):
                 element_to_isolate.append(el)
-        except:
+        except Exception as e:
             pass
     return  element_to_isolate
 

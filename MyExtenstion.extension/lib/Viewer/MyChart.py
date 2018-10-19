@@ -104,3 +104,44 @@ class LineChart:
             set_b.data =i.data
         chart.randomize_colors()
         chart.draw()
+
+class _MyCharts:
+    #File={'labels':["Mytyr","wehat"],'data':[1,2],"titel":"titel"}
+    def __init__(self,file,charttype=charts.PIE_CHART):
+        #element
+        #element.title=''
+        #element.labels=[]
+        # element.data=[]
+        self.file=file
+        self.chartype=charttype
+
+    def get_test_chart(self,chart_type):
+        chart = output.make_chart()
+        chart.type = chart_type
+        # chart.set_style('height:150px')
+        # chart.options.maintainAspectRatio = True
+        chart.options.title = {'display': True,
+                               'text': '{}'.format(self.file.get('titel')),
+                               'fontSize': 18,
+                               'fontColor': '#000',
+                               'fontStyle': 'bold'}
+        return chart
+
+    def draw(self):
+        chart = self.get_test_chart(self.chartype)
+        # chart.options.scales = {'yAxes': [{'stacked': True}]}
+        # chart.set_height(100)
+
+
+        chart.data.labels =[i for i in self.file.get('labels') ]
+
+        set_a = chart.data.new_dataset('set_a')
+        set_a.data =self.file.get('data')
+
+        #set_b = chart.data.new_dataset('set_b')
+        #set_b.data = [2, 29, 5, 5, 2, 3, 10,11]
+        # set_b.set_color(0xFF, 0xCE, 0x56, 0.8)
+        # set_b.fill = False
+
+        chart.randomize_colors()
+        chart.draw()
