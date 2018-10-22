@@ -12,19 +12,31 @@ from System.Collections.Generic import List
 
 picked = revit.pick_element()
 
-for i in picked.get_Geometry(DB.Options ()):
-	for c in i.GetInstanceGeometry():
-		print(c)
+EntitySchemaGuid=picked.GetEntitySchemaGuids()
+schemaBuilder = DB.ExtensibleStorage.SchemaBuilder(System.Guid("d64e3bab-7b93-415a-a20a-4d09ec106aaa"))
+schemaBuilder.SetReadAccessLevel(DB.ExtensibleStorage.AccessLevel.Public)
+schemaBuilder.SetWriteAccessLevel(DB.ExtensibleStorage.AccessLevel.Public)
+# schemaBuilder.SetVendorId("ADSK")
+schemaBuilder.SetSchemaName("LastTrySchema")
+fieldBuilder = schemaBuilder.AddSimpleField("LastTrySchema", DB.XYZ().GetType())
+fieldBuilder.SetUnitType(DB.UnitType.UT_Length)
+fieldBuilder.SetDocumentation("a wall.")
+schema = schemaBuilder.Finish()
 
+for i in picked.get_Geometry(DB.Options ()):
+	#for c in i.GetInstanceGeometry():
+#		print(c)\
+	c=i
+print(c)
 
 new=List[DB.GeometryObject]()
 new.Add(c)
-categoryId =DB.ElementId(DB.BuiltInCategory.OST_Floors)
+categoryId =DB.ElementId(DB.BuiltInCategory.OST_GenericModel)
 with revit.Transaction("Convert ACIS to FreeFrom"):
 	ds = DB.DirectShape.CreateElement(doc, categoryId)
 	ds.SetShape(new)
 	ds.Name = "MyShape"
-	
+
 
 		
 		

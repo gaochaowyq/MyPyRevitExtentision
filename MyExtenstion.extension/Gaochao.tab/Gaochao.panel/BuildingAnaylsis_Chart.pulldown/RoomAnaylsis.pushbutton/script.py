@@ -73,23 +73,29 @@ class Rooms:
 
 c=Rooms(rooms)
 
-for i in c.WrapedRooms:
-	if i.AreaRatio:
-		pass
-	else:
-		forms.alert('请先初始化面积计算比例', exitscript=True)
+def isinit():
+	for i in c.WrapedRooms:
+		if i.AreaRatio:
+			return True
+		else:
+			forms.alert('请先初始化面积计算比例', exitscript=False)
+
 
 if selected_switch == "初始化面积计算比例":
 	c.init()
 elif selected_switch == "建筑面积分析":
-	Result=c.Result(Com="All")
-	Chart=_MyCharts(Result)
-	Chart.draw()
+	if isinit():
+
+		Result=c.Result(Com="All")
+		Chart=_MyCharts(Result)
+		Chart.draw()
 elif selected_switch == "计容面积分析":
-	Result=c.Result(Com="ByRatio")
-	Chart=_MyCharts(Result)
-	Chart.draw()
+	if isinit():
+		Result=c.Result(Com="ByRatio")
+		Chart=_MyCharts(Result)
+		Chart.draw()
 elif selected_switch == "不计容面积分析":
-	Result=c.Result(Com="ByNoRatio")
-	Chart=_MyCharts(Result)
-	Chart.draw()
+	if isinit():
+		Result=c.Result(Com="ByNoRatio")
+		Chart=_MyCharts(Result)
+		Chart.draw()
