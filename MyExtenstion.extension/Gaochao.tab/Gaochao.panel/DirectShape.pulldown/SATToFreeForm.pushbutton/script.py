@@ -17,9 +17,10 @@ sat_import = picked
 geo_elem = sat_import.get_Geometry(DB.Options())
 solids = []
 for geo in geo_elem:
+    print(geo)
+
     if isinstance(geo, DB.Solid):
-        if geo.Volume > 0.0:
-            solids.append(geo)
+        solids.append(geo)
 # create freeform from solids
 with revit.Transaction("Convert ACIS to FreeFrom"):
     for solid in solids:
