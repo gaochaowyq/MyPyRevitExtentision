@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-__doc__="设置构件价格"
+__doc__="evry"
 import os
 import traceback
 import  sys
@@ -12,7 +12,12 @@ from System.Collections.Generic import List
 from pyrevit.framework import Stopwatch
 	
 
-picked = revit.pick_element()
+MEPSystem= revit.get_selection().first
+
+
+ConnectorManager=MEPSystem.ConnectorManager.Connectors
+for i in ConnectorManager:
+    print(i)
 
 
 
