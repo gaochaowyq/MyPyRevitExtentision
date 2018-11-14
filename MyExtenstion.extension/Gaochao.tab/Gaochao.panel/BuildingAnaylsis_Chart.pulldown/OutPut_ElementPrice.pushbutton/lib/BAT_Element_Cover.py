@@ -137,6 +137,17 @@ class Get_MEP_Ducts(GetAllBase):
         self.AssembleCode = "14-30.40.03"
         self.ClassName = "MEP_风管"
         self.unit = 'm'
+    def Name(self):
+        UnwrapedElement = [i.unwrap() for i in self.Elements()]
+        Result=[]
+        for i in UnwrapedElement:
+            try:
+                Result.append(i.Name.encode('GB2312')+str(CovertToMM(i.Height))+"*"+str(CovertToMM(i.Width)))
+            except:
+                Result.append(i.Name.encode('GB2312') +"D"+ str(CovertToMM(i.Diameter)))
+
+
+        return Result
 
 
 class Get_MEP_Pipe(MixPipe, GetAllBase):

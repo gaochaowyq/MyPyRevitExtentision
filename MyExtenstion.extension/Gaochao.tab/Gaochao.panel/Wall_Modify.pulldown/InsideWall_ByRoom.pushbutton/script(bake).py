@@ -29,12 +29,6 @@ def OffsetLines(Lines,Distance):
     for i in NewCurve.GetCurveLoopIterator():
         result.append(i)
     return result
-def EdgeArrayArrayToList(EdgeArray):
-    _List=List[DB.Curve]()
-    for i in EdgeArray:
-        for c in i:
-            _List.Add(c.AsCurve())
-    return _List
 
 #Select Room
 Rooms= revit.get_selection()
@@ -99,11 +93,8 @@ class BAT_Room:
             return WallType
 
         except Exception as e:
-            print("{roomname} is not set WallFinishType,We use Default Wall Type defaultType".format(roomname=self.RoomName))
-        finally:
-            defaultWallTypeId =doc.GetDefaultElementTypeId(DB.ElementTypeGroup.WallType)
-            WallType=doc.GetElement(defaultWallTypeId)
-            return WallType
+            print("{Room}不能获取建筑墙面类型：{Problem}".format(Room=self.RoomName, Problem=e.__traceback__))
+            sys.exit()
     @property
     def FloorFinishType(self):
         try:
@@ -150,61 +141,53 @@ class BAT_Room:
 
         return _room_boundary
 
-    def RoomFaceWall(self):
-        room_SpatialElementGeometry=DB.SpatialElementGeometryCalculator(doc).CalculateSpatialElementGeometry(self.Room)
-        RoomFace=room_SpatialElementGeometry.GetGeometry().Faces
-        edgeLoop = []
-        edgeNormal = []
-        _WallId=[]
+    def Offseted_RoomBoundary(self):
+        try:
+            room_boundary =self.RoomBoundary()[0]
+            Room_Aj_WallId=[i.ElementId for i in room_boundary]
+            lines = [i.GetCurve() for i in room_boundary]
+            Wall_Width = CovertToMM(self.WallFinishType.Width)
 
-        for i in RoomFace:
-            SpatialElementGeometryResults = room_SpatialElementGeometry.GetBoundaryFaceInfo(i)
-
-            if len(SpatialElementGeometryResults)>0:
-                if SpatialElementGeometryResults[0].SubfaceType==DB.SubfaceType.Side:
-                    surface=SpatialElementGeometryResults[0].GetBoundingElementFace()
-                    WallId=SpatialElementGeometryResults[0].SpatialBoundaryElement.HostElementId
-                    _edgeLoop=EdgeArrayArrayToList(surface.EdgeLoops)
-
-                    _FaceNormal=surface.FaceNormal
-                    edgeLoop.append(_edgeLoop)
-                    edgeNormal.append(_FaceNormal)
-                    _WallId.append(WallId)
-        return [edgeLoop,edgeNormal,_WallId]
-
-
-
+            polyline = OffsetLines(lines, -(Wall_Width / 2))
+            return [polyline,Room_Aj_WallId]
+        except Exception as e:
+            print("{RoomName}内墙轮廓线生成失败，请查看单位或轮廓线的连续性:{Problem}".format(RoomName=Room.RoomName,Problem=e))
     def ParaForMakeWall(self):
-        Wall_Surface = List[DB.Curve]()
+        Wall_curves = List[DB.Curve]()
         Aj_WallId = List[DB.ElementId]()
         for boundary_segment, Room_Aj_WallId in zip(self.Offseted_RoomBoundary()[0], self.Offseted_RoomBoundary()[1]):
             try:
                 Aj_WallId.Add(Room_Aj_WallId)
-                #Wall_curves.Add(boundary_segment)  # 2015, dep 2016
+                Wall_curves.Add(boundary_segment)  # 2015, dep 2016
             except AttributeError:
-                #Wall_curves.Add(boundary_segment)  # 2017
-                pass
-        return [Wall_Surface,Aj_WallId]
+                Wall_curves.Add(boundary_segment)  # 2017
+        return [Wall_curves,Aj_WallId]
 
     def MakeWall(self):
         @rpw.db.Transaction.ensure('Make Wall')
         def make_wall():
-            wallfaces=self.RoomFaceWall()
-            for l,n,w in zip(wallfaces[0],wallfaces[1],wallfaces[2]):
+            _ParaForMakeWall=self.ParaForMakeWall()
+            level =self.RoomLevelId
+            for i,j in zip(_ParaForMakeWall[0],_ParaForMakeWall[1]):
+                try:
+                    OldWall = doc.GetElement(j)
+                    _OldWall = OldWall.GetTypeId()
+                    _OldWall = doc.GetElement(_OldWall)
 
-                transform=DB.Transform.CreateTranslation(self.WallFinishType.Width/2*(n))
-                newLines=List[DB.Curve]()
-                for i in l:
-                    newLines.Add(i.CreateTransformed(transform))
+                    FamilyName=_OldWall.get_Parameter(DB.BuiltInParameter.ALL_MODEL_FAMILY_NAME).AsString()
+                    if FamilyName=="Curtain Wall" or FamilyName=="玻璃幕墙":
+                        print("{RoomName}玻璃幕墙无内墙".format(RoomName=Room.RoomName))
+                    elif FamilyName==None:
+                        pass
+                    elif FamilyName=="Basic Wall" or FamilyName=="基础墙" or _OldWall.Category.Name=="Structural Columns" or _OldWall.Category.Name=="结构柱" :
+                        WallID=self.WallFinishTypeId
+                        NewWall=DB.Wall.Create(doc,i,WallID,level,self.RoomHeight,0,False,False)
+                        NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
+                        DB.JoinGeometryUtils.JoinGeometry(doc,NewWall,OldWall)
+                        print("{RoomName}内墙创建成功".format(RoomName=Room.RoomName))
 
-
-                NewWall=DB.Wall.Create(doc, newLines,self.WallFinishTypeId,self.RoomLevelId, None)
-                NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
-                OldWall = doc.GetElement(w)
-                DB.JoinGeometryUtils.JoinGeometry(doc, NewWall, OldWall)
-
-
-
+                except Exception as e:
+                    print("{RoomName}内墙创建失败：{Problem}".format(RoomName=Room.RoomName,Problem=e))
 
         make_wall()
 
