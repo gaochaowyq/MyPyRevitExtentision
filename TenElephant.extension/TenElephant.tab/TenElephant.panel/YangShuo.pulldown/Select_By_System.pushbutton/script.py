@@ -24,21 +24,23 @@ def Select_By_MEPSystem():
 
     elements = DB.FilteredElementCollector(revit.doc, curview.Id) \
         .WhereElementIsNotElementType() \
-        .ToElementIds()
-
+        #.ToElementIds()
+    
+    for i in elements:
+        print(i)
+    """
     element_to_isolate = []
     for elid in elements:
         el = revit.doc.GetElement(elid)
         try:
-            if el.get_Parameter(DB.BuiltInParameter.RBS_PIPING_SYSTEM_TYPE_PARAM).AsValueString() in (MEP_System_Name):
-                element_to_isolate.append(el)
-            elif el.get_Parameter(DB.BuiltInParameter.RBS_DUCT_SYSTEM_TYPE_PARAM).AsValueString() in (MEP_System_Name):
+            if el.get_Parameter(DB.BuiltInParameter.RBS_PIPING_SYSTEM_TYPE_PARAM).AsValueString() in MEP_System_Name or el.get_Parameter(DB.BuiltInParameter.RBS_DUCT_SYSTEM_TYPE_PARAM).AsValueString() in MEP_System_Name:
+                print(el)
                 element_to_isolate.append(el)
         except Exception as e:
-            pass
+            print(e)
     return  element_to_isolate
 
-
+"""
 
 
 # element_to_id.sort()

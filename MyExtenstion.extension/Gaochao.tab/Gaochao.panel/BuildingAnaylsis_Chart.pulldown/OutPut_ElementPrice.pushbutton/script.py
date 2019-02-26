@@ -101,6 +101,9 @@ Path="{rootpath}//{filename}.svf.lln".format(rootpath=FilePath,filename=_filenam
 with open(Path,'wb') as f:
 	pickle.dump(o,f)
 	print("{filename}.svf.lln is Writed in {Path}".format(filename=_filename,Path=Path))
+	
+with open("c://test.json",'wb') as f:
+	f.write(json.dumps(o))
 
 	
 
