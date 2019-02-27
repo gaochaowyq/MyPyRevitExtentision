@@ -35,11 +35,18 @@ beamsSolid=[GetElementSolid(i) for i in beams]
 with db.Transaction('ChageWall'):
     for w in walls:
         for b in beams:
-            wSolid=GetElementSolid(w)[0]
-            bSolid = GetElementSolid(b)[0]
-            result=DB.BooleanOperationsUtils.ExecuteBooleanOperation (wSolid,bSolid,DB.BooleanOperationsType.Intersect)
-            if result.Volume>0.0001:
-                DB.JoinGeometryUtils.JoinGeometry(curdoc,w,b)
+            try:
+                wSolid=GetElementSolid(w)[0]
+                bSolid = GetElementSolid(b)[0]
+                result=DB.BooleanOperationsUtils.ExecuteBooleanOperation (wSolid,bSolid,DB.BooleanOperationsType.Intersect)
+                if result.Volume>0.0001:
+                    DB.JoinGeometryUtils.JoinGeometry(curdoc,w,b)
+                    print("Id{}与Id{}成功剪切".format(w.Id, b.Id))
+                else:
+                    print("Id{}与Id{}不想交".format(w.Id, b.Id))
+
+            except:
+                print("Id{}或Id{}有问题请查看".format(w.Id,b.Id))
 
 
 
