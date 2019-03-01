@@ -42,8 +42,6 @@ with db.Transaction('ChageWall'):
                 if result.Volume>0.0001:
                     DB.JoinGeometryUtils.JoinGeometry(curdoc,w,b)
                     print("Id{}与Id{}成功剪切".format(w.Id, b.Id))
-                else:
-                    print("Id{}与Id{}不想交".format(w.Id, b.Id))
 
             except:
                 print("Id{}或Id{}有问题请查看".format(w.Id,b.Id))
