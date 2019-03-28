@@ -14,6 +14,8 @@ picked = revit.pick_element()
 stopwatch = Stopwatch()
 
 sat_import = picked
+
+
 geo_elem = sat_import.get_Geometry(DB.Options())
 solids = []
 for geo in geo_elem:
@@ -21,6 +23,11 @@ for geo in geo_elem:
 
     if isinstance(geo, DB.Solid):
         solids.append(geo)
+    if isinstance(geo, DB.GeometryInstance):
+        for i in geo.GetSymbolGeometry():
+            solids.append(i)
+        #solids.append(geo)
+
 # create freeform from solids
 with revit.Transaction("Convert ACIS to FreeFrom"):
     for solid in solids:
