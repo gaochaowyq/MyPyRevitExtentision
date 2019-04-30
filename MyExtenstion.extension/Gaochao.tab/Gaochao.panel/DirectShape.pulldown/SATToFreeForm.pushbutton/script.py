@@ -19,12 +19,14 @@ sat_import = picked
 geo_elem = sat_import.get_Geometry(DB.Options())
 solids = []
 for geo in geo_elem:
-    print(geo)
+
 
     if isinstance(geo, DB.Solid):
+        print(geo)
         solids.append(geo)
     if isinstance(geo, DB.GeometryInstance):
         for i in geo.GetSymbolGeometry():
+            print(i)
             solids.append(i)
         #solids.append(geo)
 

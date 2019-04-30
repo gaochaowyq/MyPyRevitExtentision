@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __doc__="根据导入的CAD绘制结构梁"
-from pyrevit import rhino as rc
+from rpw.extras.rhino import Rhino as rc
 from pyrevit import forms ,DB
 from RhinoToRevit import RhinoToRevit as RhToRe
 import rpw
@@ -24,8 +24,6 @@ RhinoOBject=GetOBjectByLayer(RhinoFile,"Default")
 
 NewLine=[RhToRe.rhLineToLine(i.Geometry) for i in RhinoOBject]
 
-
-
 #信息输入部分
 Framing_types = rpw.db.Collector(of_category='OST_StructuralFraming', is_type=True).get_elements(wrapped=False)
 
@@ -37,8 +35,6 @@ Level_type_options = {t.Name: t for t in Level_type}
 
 
 components = [
-Label('输入图层名称'),
-TextBox('图层名称', Text="SM-PLAN-B4B3B2$0$S-BEAM-DASH"),
 Label('构件名称'),
 ComboBox('FamilyName', Framing_type_options),
 Label('标高'),
@@ -51,8 +47,6 @@ Button('确定')
 form = FlexForm('结构', components)
 form.show()
 Value=form.values
-
-LayerName=Value['图层名称']
 FamilyName=Value['FamilyName']
 Level=Value['Level']
 Offset=CovertToFeet(float(Value['Offset']))
