@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def CovertToM3(input):
     return input/35.3147248
 def CovertToM2(input):
@@ -36,3 +37,13 @@ def List_Flat(nested_list):
         return flatlist
              
 
+class LG_EUN():
+    BEAM_Start_Extension  ="Start Extension"
+    BEAM_End_Extension = "End Extension"
+    BEAM_z_Justification = "z Justification"
+
+
+class LG_CHS():
+    BEAM_Start_Extension  ="开始延伸"
+    BEAM_End_Extension = "端点延伸"
+    BEAM_z_Justification = "Z 轴对正"
