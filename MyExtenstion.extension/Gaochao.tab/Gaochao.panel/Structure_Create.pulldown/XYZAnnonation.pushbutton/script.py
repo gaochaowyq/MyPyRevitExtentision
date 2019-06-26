@@ -37,10 +37,23 @@ Value = form.values
 
 Locations=[]
 with open(LocationFile, 'rb') as csvfile:
-    spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+    spamreader = csv.DictReader(csvfile)
+    header=spamreader.fieldnames
+
     for row in spamreader:
-        point=[row[0],row[1],row[2],row[3]]
-        Locations.append((point))
+        Main=row.get("Tittle")
+        for name,point in row.items():
+            if name!="Tittle":
+
+                p=["{};{}".format(Main,name)]
+                for po in point.split("\r\n"):
+                    try:
+                        p.append(float(po[2:]))
+                    except:
+                        pass
+                Locations.append(p)
+        #point=[row[0],row[1],row[2],row[3]]
+        #Locations.append((point))
 
 
 
@@ -73,10 +86,13 @@ def PlaceAdaptiveCommponent(FamilySymbol,Index,Locations):
         print("well")
 
 AnnonationType = Value['FamilyName']
+print(Locations)
 
 for i in range(1,len(Locations)):
-    PlaceAdaptiveCommponent(AnnonationType,Locations[i][0],[Locations[i][1:]])
-
+    try:
+        PlaceAdaptiveCommponent(AnnonationType,Locations[i][0],[Locations[i][1:]])
+    except:
+        pass
 
 
 
