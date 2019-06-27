@@ -41,9 +41,12 @@ class LG_EUN():
     BEAM_Start_Extension  ="Start Extension"
     BEAM_End_Extension = "End Extension"
     BEAM_z_Justification = "z Justification"
+    InstanceMark  ="Mark"
+
 
 
 class LG_CHS():
     BEAM_Start_Extension  ="开始延伸"
     BEAM_End_Extension = "端点延伸"
     BEAM_z_Justification = "Z 轴对正"
+    InstanceMark = "标记"

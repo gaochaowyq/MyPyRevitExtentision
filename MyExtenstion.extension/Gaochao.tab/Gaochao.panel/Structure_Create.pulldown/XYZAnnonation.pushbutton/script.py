@@ -2,12 +2,19 @@
 __doc__ = "返回选择物体的类型"
 import rpw
 from rpw import db
-from pyrevit import revit, DB, HOST_APP, UI
+from pyrevit import revit, DB, HOST_APP, UI,_HostApplication
 from rpw.ui.forms import FlexForm, Label, ComboBox, TextBox, TextBox,Separator, Button,SelectFromList,select_file
 from Helper import *
 import csv
 uidoc = __revit__.ActiveUIDocument
 doc = __revit__.ActiveUIDocument.Document
+hostapp = _HostApplication(__revit__)
+print(hostapp.app.Language)
+
+if hostapp.app.Language.ToString()=="English_USA":
+	ParameterName=LG_EUN()
+elif hostapp.app.Language.ToString()=="Chinese_Simplified":
+	ParameterName = LG_CHS()
 
 
 LocationFile=select_file('CSV(*.csv)|*.csv')
@@ -65,7 +72,6 @@ def PlaceAdaptiveCommponent(FamilySymbol,Index,Locations):
     numberOfLocation=len(Locations)
 
     numberOfPoint = DB.AdaptiveComponentFamilyUtils.GetNumberOfAdaptivePoints(FamilySymbol.Family)
-    print(Locations)
     if numberOfLocation!=numberOfPoint:
         print("not same count location for point")
         return
@@ -81,18 +87,18 @@ def PlaceAdaptiveCommponent(FamilySymbol,Index,Locations):
             instanceWraped.parameters['X'].value=float(Locations[i][0])
             instanceWraped.parameters['Y'].value = float(Locations[i][1])
             instanceWraped.parameters['Z'].value = float(Locations[i][2])
-            instanceWraped.parameters['Mark'].value = Index
+            instanceWraped.parameters[ParameterName.InstanceMark].value = Index
 
-        print("well")
+
 
 AnnonationType = Value['FamilyName']
-print(Locations)
 
 for i in range(1,len(Locations)):
     try:
         PlaceAdaptiveCommponent(AnnonationType,Locations[i][0],[Locations[i][1:]])
+        print("点:{Index}被成功创建".format(Index=Locations[i][0]))
     except:
-        pass
+        print("点:{Index}未被成功创建".format(Index=Locations[i][0]))
 
 
 
