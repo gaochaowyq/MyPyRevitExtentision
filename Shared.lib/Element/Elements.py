@@ -89,7 +89,8 @@ class BAT_Beam():
                 self.WrapedBeam.parameters[ParameterName.BEAM_End_Level_Offset] = Distance2 + ELO
                 print("梁被排布在板底")
         else:
-            print("梁不在板内，请重新放置梁")
+
+            print("梁{}(id:{})不在板内，请重新放置梁".format(self.Beam.Name,self.Beam.Id))
 
 
 

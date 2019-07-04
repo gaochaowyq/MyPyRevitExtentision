@@ -17,8 +17,10 @@ if hostapp.app.Language.ToString()=="English_USA":
 elif hostapp.app.Language.ToString()=="Chinese_Simplified":
 	ParameterName = LG_CHS()
 Floor = revit.pick_element()
-beam=revit.pick_element()
-Beam = BAT_Beam(beam)
+beam=revit.pick_elements()
+
+for i in beam:
+	Beam = BAT_Beam(i).MoveToFloor(Floor)
 
 
 
