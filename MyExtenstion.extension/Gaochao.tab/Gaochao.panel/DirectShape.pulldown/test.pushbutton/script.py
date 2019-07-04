@@ -12,6 +12,10 @@ from System.Collections.Generic import List
 
 picked = revit.pick_element()
 
+print(picked.UniqueId)
+
+"""
+
 EntitySchemaGuid=picked.GetEntitySchemaGuids()
 schemaBuilder = DB.ExtensibleStorage.SchemaBuilder(System.Guid("d64e3bab-7b93-415a-a20a-4d09ec106aaa"))
 schemaBuilder.SetReadAccessLevel(DB.ExtensibleStorage.AccessLevel.Public)
@@ -36,7 +40,7 @@ with revit.Transaction("Convert ACIS to FreeFrom"):
 	ds = DB.DirectShape.CreateElement(doc, categoryId)
 	ds.SetShape(new)
 	ds.Name = "MyShape"
-
+"""
 
 		
 		
