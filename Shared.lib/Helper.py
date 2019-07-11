@@ -44,6 +44,7 @@ class LG_EUN():
     InstanceMark  ="Mark"
     BEAM_Start_Level_Offset = "Start Level Offset"
     BEAM_End_Level_Offset = "End Level Offset"
+    LIGHT_Photometric_Web_File="Photometric Web File"
 
 
 class LG_CHS():
@@ -53,3 +54,4 @@ class LG_CHS():
     InstanceMark = "标记"
     BEAM_Start_Level_Offset = "起点标高偏移"
     BEAM_End_Level_Offset = "终点标高偏移"
+    LIGHT_Photometric_Web_File = "Photometric Web File"

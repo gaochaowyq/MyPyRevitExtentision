@@ -12,9 +12,9 @@ hostapp = _HostApplication(__revit__)
 print(hostapp.app.Language)
 
 if hostapp.app.Language.ToString()=="English_USA":
-	ParameterName=LG_EUN()
+    ParameterName=LG_EUN()
 elif hostapp.app.Language.ToString()=="Chinese_Simplified":
-	ParameterName = LG_CHS()
+    ParameterName = LG_CHS()
 
 
 LocationFile=select_file('CSV(*.csv)|*.csv')
@@ -30,10 +30,10 @@ Level_type_options = {DB.Element.Name: t for t in Level_type}
 
 components = [
 
-	Label('构件名称'),
-	ComboBox('FamilyName', Framing_type_options),
+    Label('构件名称'),
+    ComboBox('FamilyName', Framing_type_options),
 
-	Button('确定')
+    Button('确定')
 
 ]
 Structure = []
@@ -43,7 +43,7 @@ form.show()
 Value = form.values
 
 Locations=[]
-with open(LocationFile, 'rb') as csvfile:
+with open(LocationFile, 'rbU') as csvfile:
     spamreader = csv.DictReader(csvfile)
     header=spamreader.fieldnames
 
@@ -53,7 +53,7 @@ with open(LocationFile, 'rb') as csvfile:
             if name!="Tittle":
 
                 p=["{};{}".format(Main,name)]
-                for po in point.split("\r\n"):
+                for po in point.split("\n"):
                     try:
                         p.append(float(po[2:]))
                     except:

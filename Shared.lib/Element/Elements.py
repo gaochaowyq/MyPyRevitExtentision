@@ -80,17 +80,25 @@ class BAT_Beam():
         Proj1=TopSurfaces[0].Project(self.StartPoint)
         Proj2= TopSurfaces[0].Project(self.EndPoint)
         if Proj1!=None and Proj2!=None:
-            Distance1 = Proj1.Distance
-            Distance2 = Proj2.Distance
+
+            Distance1 = Proj1.XYZPoint.Z
+            Distance2 = Proj2.XYZPoint.Z
+
+            print(Distance2,Distance1)
+
+
             with db.Transaction('Move Beam To Floor'):
                 SLO = self.WrapedBeam.parameters[ParameterName.BEAM_Start_Level_Offset].value
                 ELO = self.WrapedBeam.parameters[ParameterName.BEAM_End_Level_Offset].value
-                self.WrapedBeam.parameters[ParameterName.BEAM_Start_Level_Offset] = Distance1 + SLO
-                self.WrapedBeam.parameters[ParameterName.BEAM_End_Level_Offset] = Distance2 + ELO
+
+                self.WrapedBeam.parameters[ParameterName.BEAM_Start_Level_Offset] = Distance1 
+                self.WrapedBeam.parameters[ParameterName.BEAM_End_Level_Offset] = Distance2
+
                 print("梁被排布在板底")
         else:
 
             print("梁{}(id:{})不在板内，请重新放置梁".format(self.Beam.Name,self.Beam.Id))
+        return  [Proj1.XYZPoint,Proj2.XYZPoint]
 
 
 
@@ -104,7 +112,45 @@ class BAT_Floor():
         return TopSurface
 
 
+class BAT_Lighting():
+    def __init__(self,Light):
+        self.Light=Light
+        self.Wraped=db.Element(Light)
 
+    def GetIES(self):
+        """
+
+        :return:
+        """
+        IESName=self.Wraped.type.parameters[ParameterName.LIGHT_Photometric_Web_File].value
+        #IES = self.Wraped.type.parameters.all
+        return IESName
+    def GetFamilyName(self):
+        """
+
+        :return:
+        """
+        return self.Wraped.get_family(wrapped=True).name
+    def GetTypeName(self):
+        """
+
+        :return:
+        """
+        return  self.Wraped.name
+    def GetId(self):
+        """
+
+        :return:
+        """
+        return self.Wraped.Id
+    def GetFullNameWithId(self):
+        """
+
+        :return:
+        """
+        FullName="{FamilyName}:{TypeName}:{Id}".format(FamilyName=self.GetFamilyName(),TypeName=self.GetTypeName(),Id=self.GetId())
+
+        return FullName
 
 
 
