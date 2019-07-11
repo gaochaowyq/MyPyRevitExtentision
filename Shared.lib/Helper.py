@@ -54,4 +54,4 @@ class LG_CHS():
     InstanceMark = "标记"
     BEAM_Start_Level_Offset = "起点标高偏移"
     BEAM_End_Level_Offset = "终点标高偏移"
-    LIGHT_Photometric_Web_File = "Photometric Web File"
+    LIGHT_Photometric_Web_File = "光域网文件"
