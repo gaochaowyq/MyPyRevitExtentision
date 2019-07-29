@@ -96,14 +96,16 @@ class BAT_Room:
             WallType = db.Collector(of_category='OST_Walls', parameter_filter=parameter_filter,
                                     is_type=True).get_first()
 
+
+            WallType=WallType.unwrap()
             return WallType
 
         except Exception as e:
             print("{roomname} 没有设置墙体类型,使用默认墙体".format(roomname=self.RoomName))
-        finally:
             defaultWallTypeId =doc.GetDefaultElementTypeId(DB.ElementTypeGroup.WallType)
             WallType=doc.GetElement(defaultWallTypeId)
             return WallType
+
     @property
     def FloorFinishType(self):
         try:
@@ -198,7 +200,6 @@ class BAT_Room:
                     newCurveLoop=DB.CurveLoop.CreateViaTransform(i,transform)
                     CurveInterator=newCurveLoop.GetCurveLoopIterator()
                     for c in CurveInterator:
-                        #doc.Create.NewModelCurve(c,DB.SketchPlane.Create(doc,newCurveLoop.GetPlane()))
                         newLines.Add(c)
                 NewWall=DB.Wall.Create(doc, newLines,self.WallFinishTypeId,self.RoomLevelId, None)
                 NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
