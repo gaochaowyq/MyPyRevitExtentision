@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-__doc__="分析设计中内墙与外墙的量"
+## -*- coding: utf-8 -*-
+__doc__="通过房间属性中包含的室内做法，创建内墙。"
 
 
 import  sys
@@ -99,7 +99,7 @@ class BAT_Room:
             return WallType
 
         except Exception as e:
-            print("{roomname} is not set WallFinishType,We use Default Wall Type defaultType".format(roomname=self.RoomName))
+            print("{roomname} 没有设置墙体类型,使用默认墙体".format(roomname=self.RoomName))
         finally:
             defaultWallTypeId =doc.GetDefaultElementTypeId(DB.ElementTypeGroup.WallType)
             WallType=doc.GetElement(defaultWallTypeId)
@@ -162,11 +162,10 @@ class BAT_Room:
 
             if len(SpatialElementGeometryResults)>0:
                 if SpatialElementGeometryResults[0].SubfaceType==DB.SubfaceType.Side:
-                    surface=SpatialElementGeometryResults[0].GetBoundingElementFace()
+                    #surface=SpatialElementGeometryResults[0].GetBoundingElementFace()
                     WallId=SpatialElementGeometryResults[0].SpatialBoundaryElement.HostElementId
-                    _edgeLoop=EdgeArrayArrayToList(surface.EdgeLoops)
-
-                    _FaceNormal=surface.FaceNormal
+                    _edgeLoop=i.GetEdgesAsCurveLoops()
+                    _FaceNormal=i.FaceNormal
                     edgeLoop.append(_edgeLoop)
                     edgeNormal.append(_FaceNormal)
                     _WallId.append(WallId)
@@ -190,22 +189,21 @@ class BAT_Room:
         @rpw.db.Transaction.ensure('Make Wall')
         def make_wall():
             wallfaces=self.RoomFaceWall()
+            # l:EdgeLoop->[List<CurveLoop>]  n:edgeNormal w:_WallId
             for l,n,w in zip(wallfaces[0],wallfaces[1],wallfaces[2]):
-
-                transform=DB.Transform.CreateTranslation(self.WallFinishType.Width/2*(n))
+                transform=DB.Transform.CreateTranslation(self.WallFinishType.Width/2*(-n))
                 newLines=List[DB.Curve]()
                 for i in l:
-                    newLines.Add(i.CreateTransformed(transform))
-
-
+                    newCurveLoop=DB.CurveLoop.CreateViaTransform(i,transform)
+                    CurveInterator=newCurveLoop.GetCurveLoopIterator()
+                    for c in CurveInterator:
+                        #doc.Create.NewModelCurve(c,DB.SketchPlane.Create(doc,newCurveLoop.GetPlane()))
+                        newLines.Add(c)
                 NewWall=DB.Wall.Create(doc, newLines,self.WallFinishTypeId,self.RoomLevelId, None)
+                print("wall created")
                 NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
                 OldWall = doc.GetElement(w)
                 DB.JoinGeometryUtils.JoinGeometry(doc, NewWall, OldWall)
-
-
-
-
         make_wall()
 
 
