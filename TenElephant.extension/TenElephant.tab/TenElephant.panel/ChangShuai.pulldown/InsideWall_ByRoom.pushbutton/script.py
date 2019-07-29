@@ -1,25 +1,17 @@
 ## -*- coding: utf-8 -*-
 __doc__="通过房间属性中包含的室内做法，创建内墙。"
-
-
-import  sys
 import rpw
 import pyrevit
 from rpw import db,doc
-from pyrevit import revit,DB,UI,forms,HOST_APP
-import System
-#######################
-
-#######################
+from pyrevit import revit,DB,UI,forms,HOST_APP,_HostApplication
 from System.Collections.Generic import List
-import json
-#from pyrevit import this_script
-from pyrevit.forms import CommandSwitchWindow
-import subprocess as sp
-#from pyrevit.coreutils.console import charts
 from Autodesk.Revit.DB.Architecture import Room
-from collections import namedtuple
 from Helper import *
+hostapp = _HostApplication(__revit__)
+if hostapp.app.Language.ToString()=="English_USA":
+    ParameterName=LG_EUN()
+elif hostapp.app.Language.ToString()=="Chinese_Simplified":
+    ParameterName = LG_CHS()
 
 
 def OffsetLines(Lines,Distance):
@@ -90,7 +82,7 @@ class BAT_Room:
     @property
     def WallFinishType(self):
         try:
-            WallFinishName=self.WrapedRoom.parameters['Wall Finish'].value
+            WallFinishName=self.WrapedRoom.parameters[ParameterName.Room_Wall_Finish].value
             param_id = DB.ElementId(DB.BuiltInParameter.SYMBOL_NAME_PARAM)
             parameter_filter = db.ParameterFilter(param_id, equals=WallFinishName)
             WallType = db.Collector(of_category='OST_Walls', parameter_filter=parameter_filter,

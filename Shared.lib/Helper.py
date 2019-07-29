@@ -45,6 +45,7 @@ class LG_EUN():
     BEAM_Start_Level_Offset = "Start Level Offset"
     BEAM_End_Level_Offset = "End Level Offset"
     LIGHT_Photometric_Web_File="Photometric Web File"
+    Room_Wall_Finish = "Wall Finish"
 
 
 class LG_CHS():
@@ -55,3 +56,4 @@ class LG_CHS():
     BEAM_Start_Level_Offset = "起点标高偏移"
     BEAM_End_Level_Offset = "终点标高偏移"
     LIGHT_Photometric_Web_File = "光域网文件"
+    Room_Wall_Finish = "墙面面层"
