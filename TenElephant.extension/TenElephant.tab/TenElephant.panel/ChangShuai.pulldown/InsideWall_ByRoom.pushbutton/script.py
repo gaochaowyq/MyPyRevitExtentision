@@ -188,6 +188,7 @@ class BAT_Room:
     def MakeWall(self):
         @rpw.db.Transaction.ensure('Make Wall')
         def make_wall():
+            walls=[]
             wallfaces=self.RoomFaceWall()
             # l:EdgeLoop->[List<CurveLoop>]  n:edgeNormal w:_WallId
             for l,n,w in zip(wallfaces[0],wallfaces[1],wallfaces[2]):
@@ -200,11 +201,21 @@ class BAT_Room:
                         #doc.Create.NewModelCurve(c,DB.SketchPlane.Create(doc,newCurveLoop.GetPlane()))
                         newLines.Add(c)
                 NewWall=DB.Wall.Create(doc, newLines,self.WallFinishTypeId,self.RoomLevelId, None)
-                print("wall created")
                 NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
                 OldWall = doc.GetElement(w)
                 DB.JoinGeometryUtils.JoinGeometry(doc, NewWall, OldWall)
-        make_wall()
+                walls.append(NewWall)
+            return walls
+        wall=make_wall()
+        @rpw.db.Transaction.ensure('Modify Wall')
+        def modify_wall():
+            for i,j in zip(wall,self.RoomFaceWall()[1]):
+                if i.Orientation.DotProduct(j)>0 :
+                    i.Flip()
+                    print("墙体方向被翻转")
+                else:
+                    pass
+        modify_wall()
 
 
     def MakeFloor(self):
