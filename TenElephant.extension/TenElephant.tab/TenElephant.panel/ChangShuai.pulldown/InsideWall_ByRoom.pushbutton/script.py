@@ -194,13 +194,18 @@ class BAT_Room:
                     for c in CurveInterator:
                         newLines.Add(c)
                 OldWall = doc.GetElement(w)
-                NewWall = DB.Wall.Create(doc, newLines, self.WallFinishTypeId, self.RoomLevelId, None)
-                NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
+                #TODO There are some proble
+                try:
+                    NewWall = DB.Wall.Create(doc, newLines, self.WallFinishTypeId, self.RoomLevelId, None)
+                    NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
+                except:
+                    NewWall=None
                 try:
                     DB.JoinGeometryUtils.JoinGeometry(doc, NewWall, OldWall)
                     walls.append(NewWall)
                 except:
-                    doc.Delete(NewWall.Id)
+                    if NewWall!=None:
+                        doc.Delete(NewWall.Id)
                     walls.append(None)
             return walls
         wall=make_wall()

@@ -41,8 +41,8 @@
       <file leaf-file-name="script.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/ChangShuai.pulldown/InsideWall_ByRoom.pushbutton/script.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="210" column="27" lean-forward="true" selection-start-line="210" selection-start-column="27" selection-end-line="210" selection-end-column="27" />
+            <state relative-caret-position="390">
+              <caret line="196" column="43" selection-start-line="196" selection-start-column="43" selection-end-line="196" selection-end-column="43" />
               <folding>
                 <element signature="e#59#69#0" expanded="true" />
               </folding>
@@ -163,7 +163,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1927" />
     <option name="width" value="1936" />
     <option name="height" value="1092" />
@@ -375,7 +375,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1927" y="0" width="1936" height="1092" extended-state="0" />
+    <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -494,8 +494,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/ChangShuai.pulldown/InsideWall_ByRoom.pushbutton/script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="210" column="27" lean-forward="true" selection-start-line="210" selection-start-column="27" selection-end-line="210" selection-end-column="27" />
+        <state relative-caret-position="390">
+          <caret line="196" column="43" selection-start-line="196" selection-start-column="43" selection-end-line="196" selection-end-column="43" />
           <folding>
             <element signature="e#59#69#0" expanded="true" />
           </folding>
