@@ -193,19 +193,28 @@ class BAT_Room:
                     CurveInterator=newCurveLoop.GetCurveLoopIterator()
                     for c in CurveInterator:
                         newLines.Add(c)
-                NewWall=DB.Wall.Create(doc, newLines,self.WallFinishTypeId,self.RoomLevelId, None)
-                NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
                 OldWall = doc.GetElement(w)
-                DB.JoinGeometryUtils.JoinGeometry(doc, NewWall, OldWall)
-                walls.append(NewWall)
+                try:
+                    NewWall=DB.Wall.Create(doc, newLines,self.WallFinishTypeId,self.RoomLevelId, None)
+
+                    NewWall.get_Parameter(DB.BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(0)
+
+                    DB.JoinGeometryUtils.JoinGeometry(doc, NewWall, OldWall)
+                    walls.append(NewWall)
+                except:
+                    doc.Delete(NewWall.Id)
+                    walls.append(None)
             return walls
         wall=make_wall()
         @rpw.db.Transaction.ensure('Modify Wall')
         def modify_wall():
             for i,j in zip(wall,self.RoomFaceWall()[1]):
-                if i.Orientation.DotProduct(j)>0 :
-                    i.Flip()
-                    print("墙体方向被翻转")
+                if i!=None:
+                    if i.Orientation.DotProduct(j)>0 :
+                        i.Flip()
+                        print("墙体方向被翻转")
+                    else:
+                        pass
                 else:
                     pass
         modify_wall()
