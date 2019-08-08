@@ -25,10 +25,15 @@ elif hostapp.app.Language.ToString()=="Chinese_Simplified":
 finlename=forms.pick_file(file_ext='3dm', files_filter='', init_dir='', restore_dir=True, multi_file=False, unc_paths=False)
 Materials = rpw.db.Collector(of_category='OST_Materials', is_type=False).get_elements(wrapped=False)
 Materials_options = {t.Name: t for t in Materials}
+CategoryID_options={ "常规模型":DB.BuiltInCategory.OST_GenericModel,
+					 "墙":DB.BuiltInCategory.OST_Walls}
+
 #信息输入部分
 components = [
 Label('材质'),
 ComboBox('Material', Materials_options),
+Label('类型'),
+ComboBox('Category', CategoryID_options),
 Label('Rhino图层'),
 TextBox('Layer', Text="Default"),
 Button('确定')
@@ -40,28 +45,31 @@ Value=form.values
 
 Mat=Value['Material'].Id
 
+Category=Value['Category']
+
 
 RhinoFile=rc.FileIO.File3dm.Read(finlename)
 def GetOBjectByLayer(RehinoFile,LayerName):
 	Objects=RehinoFile.Objects.FindByLayer(LayerName)
 	return Objects
 RhinoOBject=GetOBjectByLayer(RhinoFile,Value['Layer'])
-Mesh=None
-for i in RhinoOBject:
-	Mesh=i.Geometry
+Mesh=[i.Geometry for i in RhinoOBject]
 
 
 #NewLine=[RhToRe.rhLineToLine(i.Geometry) for i in RhinoOBject]
 
-@rpw.db.Transaction.ensure('CreateBeam')
-def CreateBeam(GeometricalObjects):
-	ds = DB.DirectShape.CreateElement(doc, DB.ElementId(DB.BuiltInCategory.OST_GenericModel))
+@rpw.db.Transaction.ensure('Create Mesh From Rhino')
+def CreateMesh(GeometricalObjects):
+	ds = DB.DirectShape.CreateElement(doc, DB.ElementId(Category))
 	ds.ApplicationId = "Application id"
 	ds.ApplicationDataId = "Geometry object id"
 
 	ds.SetShape(GeometricalObjects)
-	print("CoverSionWell")
-CreateBeam(RhToRe.rhMeshToMesh(Mesh,Mat))
+	print("Id:{id} 创建成功".format(id=ds.Id))
+
+
+for i in Mesh:
+	CreateMesh(RhToRe.rhMeshToMesh(i,Mat))
 
 	
 
