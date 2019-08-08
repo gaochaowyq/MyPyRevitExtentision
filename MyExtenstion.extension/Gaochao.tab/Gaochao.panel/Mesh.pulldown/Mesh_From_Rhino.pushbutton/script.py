@@ -68,8 +68,14 @@ def CreateMesh(GeometricalObjects):
 	print("Id:{id} 创建成功".format(id=ds.Id))
 
 
+
+
+
 for i in Mesh:
-	CreateMesh(RhToRe.rhMeshToMesh(i,Mat))
+	try:
+		CreateMesh(RhToRe.rhMeshToMesh(i,Mat))
+	except:
+		pass
 
 	
 

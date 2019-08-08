@@ -35,6 +35,8 @@ def rhMeshToMesh(rhMesh,MaterialId):
 	FaceIndex=[]
 	for i in rhMesh.Vertices:
 		Vertices.append(rhPointToPoint(i))
+
+
 	for i in rhMesh.Faces:
 		index=[]
 		if i.IsTriangle:
@@ -47,7 +49,6 @@ def rhMeshToMesh(rhMesh,MaterialId):
 			index.append(i.C)
 			index.append(i.D)
 		FaceIndex.append(index)
-
 	for i in FaceIndex:
 		for index in i:
 			loopVertices.Add(Vertices[index])
@@ -56,7 +57,10 @@ def rhMeshToMesh(rhMesh,MaterialId):
 	builder.CloseConnectedFaceSet()
 	builder.Target = _DB.TessellatedShapeBuilderTarget.Solid
 	builder.Fallback = _DB.TessellatedShapeBuilderFallback.Abort
-	builder.Build()
-	result = builder.GetBuildResult()
-	GeometricalObjects=result.GetGeometricalObjects()
-	return GeometricalObjects
+	try:
+		builder.Build()
+		result = builder.GetBuildResult()
+		GeometricalObjects = result.GetGeometricalObjects()
+		return GeometricalObjects
+	except:
+		return  None
