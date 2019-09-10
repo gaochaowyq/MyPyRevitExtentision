@@ -41,6 +41,7 @@ class LG_EUN():
     BEAM_Start_Extension  ="Start Extension"
     BEAM_End_Extension = "End Extension"
     BEAM_z_Justification = "z Justification"
+
     InstanceMark  ="Mark"
     BEAM_Start_Level_Offset = "Start Level Offset"
     BEAM_End_Level_Offset = "End Level Offset"

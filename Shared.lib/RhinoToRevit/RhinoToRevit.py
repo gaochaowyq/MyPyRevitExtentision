@@ -49,9 +49,11 @@ def rhMeshToMesh(rhMesh,MaterialId):
 			index.append(i.C)
 			index.append(i.D)
 		FaceIndex.append(index)
+	#print(FaceIndex)
 	for i in FaceIndex:
 		for index in i:
 			loopVertices.Add(Vertices[index])
+
 		builder.AddFace(_DB.TessellatedFace(loopVertices, materialId))
 		loopVertices.Clear()
 	builder.CloseConnectedFaceSet()
@@ -62,5 +64,6 @@ def rhMeshToMesh(rhMesh,MaterialId):
 		result = builder.GetBuildResult()
 		GeometricalObjects = result.GetGeometricalObjects()
 		return GeometricalObjects
-	except:
+	except Exception as e:
+		print(e)
 		return  None
