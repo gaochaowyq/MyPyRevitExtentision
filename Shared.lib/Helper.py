@@ -48,6 +48,23 @@ class LG_EUN():
     LIGHT_Photometric_Web_File="Photometric Web File"
     Room_Wall_Finish = "Wall Finish"
 
+    #####################################
+    #WallS
+    ####################################
+
+    WALL_BASE_CONSTRAINT="Base Constraint"
+    WALL_BASE_OFFSET="Base Offset"
+    WALL_HEIGHT_TYPE="Top Constraint"
+    WALL_TOP_OFFSET="Top Offset"
+
+    WALL_Length = "Length"
+    WALL_Area = "Area"
+    WALL_Volume = "Volume"
+
+
+
+
+
 
 class LG_CHS():
     BEAM_Start_Extension  ="开始延伸"
@@ -58,3 +75,16 @@ class LG_CHS():
     BEAM_End_Level_Offset = "终点标高偏移"
     LIGHT_Photometric_Web_File = "光域网文件"
     Room_Wall_Finish = "墙面面层"
+
+    #####################################
+    #WallS
+    ####################################
+
+    WALL_BASE_CONSTRAINT="底部约束"
+    WALL_BASE_OFFSET="底部偏移"
+    WALL_HEIGHT_TYPE="顶部约束"
+    WALL_TOP_OFFSET="顶部偏移"
+    WALL_Length = "长度"
+    WALL_Area = "面积"
+    WALL_Volume = "体积"
+

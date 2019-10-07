@@ -7,6 +7,7 @@ def rhPointToPoint(rhPoint):
 	rhPointX = rhPoint.X
 	rhPointY = rhPoint.Y
 	rhPointZ = rhPoint.Z
+
 	return _DB.XYZ(CovertToFeet(rhPointX),CovertToFeet(rhPointY),CovertToFeet(rhPointZ))
 
 def rhLineToLine(rhCurve):
@@ -18,6 +19,14 @@ def rhLineToLine(rhCurve):
 		dsEndPoint = rhPointToPoint(rhCurve.PointAtEnd)
 		pass
 	return _DB.Line.CreateBound(dsStartPoint,dsEndPoint)
+
+def TestPoints(Points):
+	if Points[0].IsAlmostEqualTo(Points[1], CovertToFeet(1)) or Points[0].IsAlmostEqualTo(Points[2], CovertToFeet(1)):
+		print(points)
+		return True
+	else:
+		return None
+
 
 def rhMeshToMesh(rhMesh,MaterialId):
 	"""
@@ -57,13 +66,19 @@ def rhMeshToMesh(rhMesh,MaterialId):
 		builder.AddFace(_DB.TessellatedFace(loopVertices, materialId))
 		loopVertices.Clear()
 	builder.CloseConnectedFaceSet()
-	builder.Target = _DB.TessellatedShapeBuilderTarget.Solid
-	builder.Fallback = _DB.TessellatedShapeBuilderFallback.Abort
+
 	try:
+		builder.Target = _DB.TessellatedShapeBuilderTarget.Solid
+		builder.Fallback = _DB.TessellatedShapeBuilderFallback.Abort
 		builder.Build()
 		result = builder.GetBuildResult()
 		GeometricalObjects = result.GetGeometricalObjects()
 		return GeometricalObjects
 	except Exception as e:
-		print(e)
-		return  None
+		print("Not Create As Solid")
+		builder.Target = _DB.TessellatedShapeBuilderTarget.AnyGeometry
+		builder.Fallback = _DB.TessellatedShapeBuilderFallback.Mesh
+		builder.Build()
+		result = builder.GetBuildResult()
+		GeometricalObjects = result.GetGeometricalObjects()
+		return GeometricalObjects
