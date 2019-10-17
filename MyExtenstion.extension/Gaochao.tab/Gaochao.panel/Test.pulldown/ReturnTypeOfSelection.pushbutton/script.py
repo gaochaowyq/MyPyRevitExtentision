@@ -15,7 +15,7 @@ curview = revit.activeview
 curdoc=revit.doc
 
 
-
+"""
 selection = revit.pick_elements()
 options=DB.Options()
 def GetElementSolid(Element):
@@ -46,5 +46,4 @@ with db.Transaction('ChageWall'):
                 print("Id{}或Id{}有问题请查看".format(w.Id,b.Id))
 
 #print(GetElementSolid(selection))
-
-print("完成所有剪切")
+"""

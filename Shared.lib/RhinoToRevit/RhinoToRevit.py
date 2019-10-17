@@ -7,7 +7,7 @@ def rhPointToPoint(rhPoint):
 	rhPointX = rhPoint.X
 	rhPointY = rhPoint.Y
 	rhPointZ = rhPoint.Z
-
+	#print(CovertToFeet(rhPointX),CovertToFeet(rhPointY),CovertToFeet(rhPointZ))
 	return _DB.XYZ(CovertToFeet(rhPointX),CovertToFeet(rhPointY),CovertToFeet(rhPointZ))
 
 def rhLineToLine(rhCurve):
@@ -38,6 +38,8 @@ def rhMeshToMesh(rhMesh,MaterialId):
 	materialId=MaterialId
 	loopVertices =List[_DB.XYZ]()
 	builder =_DB.TessellatedShapeBuilder()
+	builder.Target = _DB.TessellatedShapeBuilderTarget.Solid
+	builder.Fallback = _DB.TessellatedShapeBuilderFallback.Abort
 	builder.OpenConnectedFaceSet(True)
 
 	Vertices=[]
@@ -53,10 +55,12 @@ def rhMeshToMesh(rhMesh,MaterialId):
 			index.append(i.B)
 			index.append(i.C)
 		else:
+
 			index.append(i.A)
 			index.append(i.B)
 			index.append(i.C)
 			index.append(i.D)
+
 		FaceIndex.append(index)
 	#print(FaceIndex)
 	for i in FaceIndex:
@@ -68,12 +72,14 @@ def rhMeshToMesh(rhMesh,MaterialId):
 	builder.CloseConnectedFaceSet()
 
 	try:
-		builder.Target = _DB.TessellatedShapeBuilderTarget.Solid
-		builder.Fallback = _DB.TessellatedShapeBuilderFallback.Abort
+
+
 		builder.Build()
 		result = builder.GetBuildResult()
 		GeometricalObjects = result.GetGeometricalObjects()
+		print("well")
 		return GeometricalObjects
+
 	except Exception as e:
 		print("Not Create As Solid")
 		builder.Target = _DB.TessellatedShapeBuilderTarget.AnyGeometry
@@ -82,3 +88,4 @@ def rhMeshToMesh(rhMesh,MaterialId):
 		result = builder.GetBuildResult()
 		GeometricalObjects = result.GetGeometricalObjects()
 		return GeometricalObjects
+
