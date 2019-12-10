@@ -4,6 +4,7 @@ from rpw import db
 from pyrevit import revit, DB, HOST_APP, UI,_HostApplication
 from Helper import LG_EUN,LG_CHS,CovertToMM
 
+from System.Collections.Generic import List
 doc = __revit__.ActiveUIDocument.Document
 hostapp = _HostApplication(__revit__)
 if hostapp.app.Language.ToString()=="English_USA":
@@ -152,7 +153,28 @@ class BAT_Lighting():
 
         return FullName
 
+class BAT_Wall():
+    def __init__(self,Wall):
+        self.Wall=Wall
+    def FindWallFace(self):
+        normalFaces = List[DB.Face]()
+        opt = DB.Options()
+        opt.ComputeReferences = True
+        opt.DetailLevel = DB.ViewDetailLevel.Fine
 
+        e = self.Wall.get_Geometry(opt)
+        print(e)
+
+        for obj in e:
+            solid = obj
+
+            if solid != None and solid.Faces.Size > 0:
+
+                for face in solid.Faces:
+                    pf = face
+                    if pf != None:
+                        normalFaces.Add(pf)
+        return normalFaces
 
 
 

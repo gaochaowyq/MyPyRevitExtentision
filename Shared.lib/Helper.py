@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from pyrevit import revit, DB
 def CovertToM3(input):
-    return input/35.3147248
+    value = DB.UnitUtils.ConvertFromInternalUnits(input, DB.DisplayUnitType.DUT_CUBIC_METERS)
+    return value
 def CovertToM2(input):
-    return input/10.7639104
+    value = DB.UnitUtils.ConvertFromInternalUnits(input, DB.DisplayUnitType.DUT_SQUARE_METERS)
+    return value
 
 def CovertToMM(input):
-    value = DB.UnitUtils.UnitUtils.ConvertFromInternalUnits(input, DB.DisplayUnitType.DUT_MILLIMETERS)
+    value = DB.UnitUtils.ConvertFromInternalUnits(input, DB.DisplayUnitType.DUT_MILLIMETERS)
     return value
 def CovertToFeet(input):
     value = DB.UnitUtils.ConvertToInternalUnits(input, DB.DisplayUnitType.DUT_MILLIMETERS)

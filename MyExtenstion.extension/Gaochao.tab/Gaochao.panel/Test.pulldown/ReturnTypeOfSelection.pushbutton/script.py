@@ -14,6 +14,14 @@ from pyrevit.framework import Stopwatch
 curview = revit.activeview
 curdoc=revit.doc
 
+selection = revit.pick_element()
+
+options = DB.Options()
+
+Geometry=selection.get_Geometry(options)
+
+for i in Geometry:
+    print(i.Transform.Origin)
 
 """
 selection = revit.pick_elements()
