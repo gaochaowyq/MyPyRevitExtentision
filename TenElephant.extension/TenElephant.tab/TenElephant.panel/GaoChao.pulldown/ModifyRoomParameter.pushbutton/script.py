@@ -52,11 +52,11 @@ def CovertRoomUnit(Room):
 
     Room.parameters["mPerimeter"].value =CovertToMM( Room.parameters["Perimeter"].value)
     try:
-        Room.parameters["mVolume"].value = Room.parameters["Volume"].value
+        Room.parameters["mVolume"].value = CovertToM3(Room.parameters["Volume"].value)
     except:
         Room.parameters["mVolume"].value =0
     try:
-        Room.parameters["mHeight"].value = Room.parameters["Unbounded Height"].value
+        Room.parameters["mHeight"].value =CovertToMM( Room.parameters["Unbounded Height"].value)
     except:
         Room.parameters["mHeight"].value = 0
 
