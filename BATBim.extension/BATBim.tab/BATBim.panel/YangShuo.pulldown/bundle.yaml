@@ -1,0 +1,23 @@
+layout:   
+    - CreatePlane
+    - MEP_GuanZong
+    - Select_By_System
+    - CreatePipeAnnonation
+    - GetLightingData
+    - CreateDrainByPoint
+    - CreateWallOpening
+title:
+  en_us: YangShuo
+  chinese_s: 杨硕
+
+
+# bundle tooltip
+
+tooltip:
+  en_us: Revit Plugin For YangShuo
+  chinese_s: 杨硕的专属Revit插件
+
+
+
+# bundle author
+author: GaoChao

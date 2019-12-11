@@ -1,0 +1,18 @@
+layout:
+    - depthmap
+    - Direct3DContext
+    - AddElementId
+    - ModifyRoomParameter
+    
+title:
+  en_us: GaoChao
+  chinese_s: 高超
+  
+tooltip:
+  en_us: Revit Plugin For GaoChao
+  chinese_s: 高超的专属Revit插件
+
+
+
+# bundle author
+author: GaoChao

@@ -1,0 +1,4 @@
+layout:
+    - UpdateLocation
+    - LoacationForGIS
+    - AddLocationForGIS

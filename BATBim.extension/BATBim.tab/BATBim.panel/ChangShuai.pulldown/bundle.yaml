@@ -1,0 +1,20 @@
+layout:
+    - CreatePartsAnnonation
+    - JoinWallAndBeam
+    - AlignBeamAndFloor
+    - InsideWall_ByRoom
+title:
+  en_us: ChangShuai
+  chinese_s: 常帅
+
+
+# bundle tooltip
+
+tooltip:
+  en_us: Revit Plugin For ChangShuai
+  chinese_s: 常帅的专属Revit插件
+
+
+
+# bundle author
+author: GaoChao
