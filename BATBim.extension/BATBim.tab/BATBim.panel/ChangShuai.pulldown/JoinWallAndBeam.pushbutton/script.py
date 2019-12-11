@@ -10,7 +10,7 @@ from pyrevit import HOST_APP
 import traceback
 curview = revit.active_view 
 curdoc=revit.doc
-#picked=revit.pick_element()
+picked=revit.pick_element()
 options=DB.Options()
 categoryId =DB.ElementId(DB.BuiltInCategory.OST_GenericModel)
 
@@ -38,18 +38,9 @@ def GetFamilyInstanceSolid(Element):
 
 
 
-    #for i in geo:
-    #    print(i)
-        #if type(i) != DB.GeometryInstance:
-        #    if i.Volume!=0:
-         #       Solids.append(i)
-    #return Solids
-
-
 
 walls = db.Collector(of_class='Wall',is_not_type=True).get_elements(wrapped=False)
 
-#wallsSolid=[GetElementSolid(i) for i in walls]
 
 
 
@@ -71,18 +62,16 @@ with db.Transaction('ChageWall'):
 
 
 """
-
-with db.Transaction('ChageWall'):
+@rpw.db.Transaction.ensure('JoinWallAndConcreteFraming')
+def JoinWallAndConcreteFraming(walls):
     for w in walls:
         try:
             #wSolid=GetElementSolid(w)[0]
             wBox=w.BoundingBox[curview]
             #ds = DB.DirectShape.CreateElement(curdoc, categoryId)
-
             #ListGeometry=List[DB.GeometryObject]()
             #ListGeometry.Add(wBox)
             #ds.AppendShape(ListGeometry)
-
             #print("Createed")
             outLine=DB.Outline(wBox.Min,wBox.Max)
 
@@ -91,7 +80,6 @@ with db.Transaction('ChageWall'):
             collector=DB.FilteredElementCollector(curdoc)
 
             elements = collector.WherePasses(boundingBoxIntersectsFilter).OfCategory(DB.BuiltInCategory.OST_StructuralFraming).ToElements()
-            print(elements.Count)
             for i in elements:
                 bSolid=GetFamilyInstanceSolid(i)
                 wSolid=GetElementSolid(w)
@@ -106,11 +94,11 @@ with db.Transaction('ChageWall'):
         except Exception as e:
             print(e)
             print("ID:{}墙体有问题".format(w.Id))
-#HOST_APP.uiapp.PostCommand(UI.RevitCommandId.LookupPostableCommandId(UI.PostableCommand.JoinGeometry))
 
 
+#print(picked.Symbol.Parameter[DB.BuiltInParameter.FAMILY_STRUCT_MATERIAL_TYPE].AsValueString())
 
-
+JoinWallAndConcreteFraming(walls)
 print("完成所有剪切")
 
 
