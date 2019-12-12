@@ -43,15 +43,25 @@ def List_Flat(nested_list):
              
 
 class LG_EUN():
+
+    #####################################
+    #General
+    #####################################
+    InstanceMark  ="Mark"
+    LIGHT_Photometric_Web_File="Photometric Web File"
+    Room_Wall_Finish = "Wall Finish"
+
+    #####################################
+    #Framing/Beam
+    #####################################
     BEAM_Start_Extension  ="Start Extension"
     BEAM_End_Extension = "End Extension"
     BEAM_z_Justification = "z Justification"
-
-    InstanceMark  ="Mark"
     BEAM_Start_Level_Offset = "Start Level Offset"
     BEAM_End_Level_Offset = "End Level Offset"
-    LIGHT_Photometric_Web_File="Photometric Web File"
-    Room_Wall_Finish = "Wall Finish"
+    BEAM_Width="Width"
+    BEAM_Height="Height"
+
 
     #####################################
     #WallS
@@ -72,14 +82,24 @@ class LG_EUN():
 
 
 class LG_CHS():
+    #####################################
+    #General
+    #####################################
+    LIGHT_Photometric_Web_File = "光域网文件"
+    Room_Wall_Finish = "墙面面层"
+    InstanceMark = "标记"
+    #####################################
+    #Framing/Beam
+    #####################################
+
     BEAM_Start_Extension  ="开始延伸"
     BEAM_End_Extension = "端点延伸"
     BEAM_z_Justification = "Z 轴对正"
-    InstanceMark = "标记"
+
     BEAM_Start_Level_Offset = "起点标高偏移"
     BEAM_End_Level_Offset = "终点标高偏移"
-    LIGHT_Photometric_Web_File = "光域网文件"
-    Room_Wall_Finish = "墙面面层"
+    BEAM_Width="宽度"
+    BEAM_Height="高度"
 
     #####################################
     #WallS
