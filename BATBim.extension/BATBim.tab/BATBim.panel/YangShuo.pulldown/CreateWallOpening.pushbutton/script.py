@@ -10,9 +10,9 @@ import csv
 
 from System.Collections.Generic import List
 from Element.Elements import BAT_Wall
+from CSharp import FunctionHelper
 from  Helper import *
-uidoc = __revit__.ActiveUIDocument
-doc = __revit__.ActiveUIDocument.Document
+
 hostapp = _HostApplication(__revit__)
 print(hostapp.app.Language)
 if hostapp.app.Language.ToString()=="English_USA":
@@ -20,74 +20,83 @@ if hostapp.app.Language.ToString()=="English_USA":
 elif hostapp.app.Language.ToString()=="Chinese_Simplified":
     ParameterName = LG_CHS()
 
-def FindDuctCurve(duct):
-
-    list =List[DB.XYZ]()
-
-    csi = duct.ConnectorManager.Connectors.ForwardIterator()
-    while csi.MoveNext():
-        conn = csi.Current
-        list.Add(conn.Origin)
-
-    curve = DB.Line.CreateBound(list[0], list[1])
-    curve.MakeUnbound()
-
-    return curve
-
-
-def FindFaceCurve(DuctCurve, WallFace):
-
-    #The intersectionpoint
-    intersectionR =clr.Reference[DB.IntersectionResultArray]()
-    # Intersection point set
-    #SetComparisonResult results
-    # Results of Comparison
-
-    results = WallFace.Intersect(DuctCurve, intersectionR)
-    intersectionResult =None
-    # Intersectioncoordinate
-    if DB.SetComparisonResult.Disjoint != results:
-        if intersectionR != None:
-            if intersectionR.IsEmpty==False:
-                intersectionResult = intersectionR.get_Item(0).XYZPoint
-            return intersectionResult
-
-
-
-
+###########################################################################
+# StartCode
+curview = revit.active_view
+curdoc=revit.doc
+def GetElmentLocationCurve(element):
+    locaiton=element.Locaiton
+    if isinstance(DB.LocationCurve,locaiton):
+        return locaiton
+    else:
+        print("This Element is PointBased")
+        return None
 walls = db.Collector(of_class='Wall',is_type=False)
+# Get Symbol for Opening
+openSymbol = rpw.db.Collector(of_category='OST_GenericModel', is_type=True).get_elements(wrapped=False)
+openTypeOptions = {t.FamilyName + ";" + t.Parameter[DB.BuiltInParameter.SYMBOL_NAME_PARAM].AsString(): t for t in
+                        openSymbol}
+components = [
+    Label('构件名称'),
+    ComboBox('FamilyName', openTypeOptions),
+    Button('确定')
+]
+form = FlexForm('开洞', components)
+form.show()
+Value = form.values
+openSymbol=Value["FamilyName"]
+##########################################################
 
-pipes = db.Collector(of_category='OST_DuctCurves',is_type=False)
+###########################################################
+
+@rpw.db.Transaction.ensure('Create Opening')
+def CreateOpeningForWall(wall,ducts):
+    """
+    :param wall:
+    :param ducts:
+    :return:
+    """
+    for duct in ducts:
+        framingType=duct.Symbol.Family.get_Parameter(DB.BuiltInParameter.FAMILY_STRUCT_MATERIAL_TYPE).AsInteger()
+        if framingType==1:
+            framingLocation=duct.Location
+            wallLocation=wall.Location
+            if isinstance(framingLocation,DB.LocationCurve):
+                # get the curve for wall and framing
+                fWCurve=wallLocation.Curve
+                fLCurve=framingLocation.Curve
+                # get curve Intersection Result
+                results = FunctionHelper.BAT_ComputeClosestPoints(fWCurve, fLCurve)[0]
+
+                fWVector=CurveVectorAtPoint(fWCurve,results.XYZPointOnFirstCurve)
+                fLVector = CurveVectorAtPoint(fLCurve,results.XYZPointOnSecondCurve)
+                dot=fWVector.DotProduct(fLVector)
+                Width=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_WIDTH).AsDouble()
+                Height=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_HEIGHT).AsDouble()
+                Depth=wall.WallType.get_Parameter(DB.BuiltInParameter.WALL_ATTR_WIDTH_PARAM).AsDouble()
+                if -0.99<dot<0.99:
+                    createdElements=CreateOpenByPointAndDirection(openSymbol,results.XYZPointOnSecondCurve,fLVector,Width,Height,Depth+1)
+                    for i in createdElements:
+                        DB.InstanceVoidCutUtils.AddInstanceVoidCut (curdoc,wall,curdoc.GetElement(i) )
 
 
-print(pipes[0])
+
+                else:
+                    #make a open in the all
+                    pass
 
 
-c=FindDuctCurve(pipes[0])
-print(c)
 
-FitId=DB.ElementId(203162)
-Fit=doc.GetElement(FitId)
-LevelId=DB.ElementId(13071)
-Level=doc.GetElement(LevelId)
-View=doc.ActiveView
-StructuralType=DB.Structure.StructuralType.NonStructural
-WrapedElement =db.Element.from_id(FitId)
-print(Fit)
-@rpw.db.Transaction.ensure('Create Drain')
-def CreateOpeningForWall(Duct,Wall):
+            else:
+                print("ID{}Is Point Based FamilyInstance")
 
-    DuctCurve=FindDuctCurve(Duct)
-    WallFace=BAT_Wall(Wall).FindWallFace()
 
-    Inter=FindFaceCurve(DuctCurve,WallFace[0])
-
-    Final = doc.Create.NewFamilyInstance(Inter, Fit.Symbol, StructuralType)
-    #picked = revit.pick_element()
-
-    DB.ElementTransformUtils.RotateElement(doc, Final.Id, DB.Line.CreateBound(Inter,Inter.Add(DB.XYZ(0,0,1))), 0)
-    #print(Final.HandOrientation)
-    #Final.HandOrientation=DB.XYZ(0,0,1)
+        elif framingType==2:
+            DB.JoinGeometryUtils.JoinGeometry(curdoc, wall, framing)
+        elif framingType==3:
+            pass
+        elif framingType==4:
+            pass
 
 CreateOpeningForWall(pipes[0],walls[0])
 

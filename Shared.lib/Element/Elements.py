@@ -11,10 +11,6 @@ if hostapp.app.Language.ToString()=="English_USA":
 	ParameterName=LG_EUN()
 elif hostapp.app.Language.ToString()=="Chinese_Simplified":
 	ParameterName = LG_CHS()
-
-
-
-
 class _Room(db.Room):
     @property
     def Area(self):
@@ -153,6 +149,7 @@ class BAT_Lighting():
 
         return FullName
 
+
 class BAT_Wall():
     def __init__(self,Wall):
         self.Wall=Wall
@@ -175,6 +172,8 @@ class BAT_Wall():
                     if pf != None:
                         normalFaces.Add(pf)
         return normalFaces
+
+
 
 
 

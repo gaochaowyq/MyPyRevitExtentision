@@ -1,0 +1,2 @@
+optional:
+    - bin/                # can include a bin/ directory that hosts binaries required by the child bundles

@@ -4,7 +4,10 @@
     <list default="true" id="f1cd7a08-99a6-47c2-91ac-b8f1cf4651c8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/JoinWallAndBeam.pushbutton/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/JoinWallAndBeam.pushbutton/script.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared.lib/Helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared.lib/Helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/YangShuo.pulldown/CreateWallOpening.pushbutton/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/YangShuo.pulldown/CreateWallOpening.pushbutton/script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared.lib/CSharp/BAT_PyrevitHelper.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared.lib/CSharp/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared.lib/Element/Elements.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shared.lib/Element/Elements.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,30 +28,30 @@
       <file leaf-file-name="script.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/JoinWallAndBeam.pushbutton/script.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
+            <state relative-caret-position="60">
+              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
               <folding>
-                <element signature="e#42#76#0" expanded="true" />
-                <element signature="e#741#928#0" />
-                <element signature="e#970#1322#0" />
                 <element signature="e#1426#3372#1" />
                 <element signature="e#3423#4698#0" />
                 <element signature="e#4743#4869#0" />
-                <element signature="e#4918#5037#0" />
+                <element signature="e#5109#5916#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="script.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ZhangRan.pulldown/ReverseChoice.pushbutton/script.py">
+      <file leaf-file-name="bundle.yaml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Shared.lib/bundle.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#41#75#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="30">
+              <caret line="1" column="106" selection-start-line="1" selection-start-column="106" selection-end-line="1" selection-end-column="106" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Shared.lib/Element/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="script.py" pinned="false" current-in-tab="false">
@@ -66,10 +69,38 @@
       <file leaf-file-name="script.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/YangShuo.pulldown/CreateWallOpening.pushbutton/script.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
-              <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+            <state relative-caret-position="-1290">
+              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Elements.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Shared.lib/Element/Elements.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="179" selection-start-line="179" selection-end-line="179" />
               <folding>
-                <element signature="e#42#97#0" expanded="true" />
+                <element signature="e#461#1078#0" />
+                <element signature="e#1103#1666#0" />
+                <element signature="e#1695#2955#0" />
+                <element signature="e#2982#3281#0" />
+                <element signature="e#3310#4180#0" />
+                <element signature="e#4204#4770#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Helper.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Shared.lib/Helper.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="654">
+              <caret line="83" column="15" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
+              <folding>
+                <element signature="e#869#1113#0" />
+                <element signature="e#1150#2063#0" />
+                <element signature="e#2090#2877#0" />
               </folding>
             </state>
           </provider>
@@ -84,22 +115,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="script.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/CreatePartsAnnonation.pushbutton/script.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -126,10 +148,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/_layout" />
-        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/MEPSystem/script.py" />
-        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/MEPSystem.pushbutton/script.py" />
-        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/LocateElement.pulldown/UpdateLocation.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/OutPut_ElementPrice.pushbutton/lib/BAT_Element_Cover.py" />
         <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Wall_Modify.pulldown/InsideWall_ByRoom.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/YangShuo.pulldown/Select_By_System.pushbutton/script.py" />
@@ -167,7 +185,6 @@
         <option value="$PROJECT_DIR$/Shared.lib/RhinoToRevit/RhinoToRevit.py" />
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/YangShuo.pulldown/CreateDrainByPoint.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/YangShuo.pulldown/_layout" />
-        <option value="$PROJECT_DIR$/Shared.lib/Element/Elements.py" />
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/YangShuo.pulldown/CreateWallOpening.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/GaoChao.pulldown/AddElementId.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/GaoChao.pulldown/AddSolidRoom.pushbutton/script.py" />
@@ -176,6 +193,11 @@
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/GaoChao.pulldown/ModifyRoomParameter.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/ChangShuai.pulldown/JoinWallAndBeam.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/Shared.lib/Helper.py" />
+        <option value="$PROJECT_DIR$/Shared.lib/Element/Elements.py" />
+        <option value="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/YangShuo.pulldown/CreateWallOpening.pushbutton/script.py" />
+        <option value="$PROJECT_DIR$/Shared.lib/bin/__init__.py" />
+        <option value="$PROJECT_DIR$/Shared.lib/bundle.yaml" />
+        <option value="$PROJECT_DIR$/Shared.lib/BAT_PyrevitHelper.py" />
         <option value="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/JoinWallAndBeam.pushbutton/script.py" />
       </list>
     </option>
@@ -215,6 +237,12 @@
             <path>
               <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+              <item name="BATBim.extension" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
               <item name="Shared.lib" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -232,19 +260,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Autodesk\MyPyRevitExtentision\Shared.bin" />
+      <recent name="F:\Autodesk\MyPyRevitExtentision\BATBim.extension\bin" />
+      <recent name="F:\Autodesk\MyPyRevitExtentision\TenElephant.extension\TenElephant.tab\TenElephant.panel\GaoChao.pulldown" />
+      <recent name="F:\Autodesk\MyPyRevitExtentision\TenElephant.extension\TenElephant.tab\TenElephant.panel\YangShuo.pulldown" />
+      <recent name="F:\Autodesk\MyPyRevitExtentision\MyExtenstion.extension\Gaochao.tab\Gaochao.panel\LocateElement.pulldown" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Autodesk\MyPyRevitExtentision\BATBim.extension\bin" />
       <recent name="F:\Autodesk\MyPyRevitExtentision\TenElephant.extension\TenElephant.tab\TenElephant.panel\ChangShuai.pulldown" />
       <recent name="F:\Autodesk\MyPyRevitExtentision\TenElephant.extension\TenElephant.tab\TenElephant.panel\ZhangRan.pulldown" />
       <recent name="E:\01_TenElephant_Project\2018_Project\01Extension\MyPyRevitExtentision\MyPyRevitExtentision\MyExtenstion.extension\lib\CodeInterperator" />
       <recent name="E:\01_TenElephant_Project\2018_Project\01Extension\MyPyRevitExtentision\MyPyRevitExtentision\MyExtenstion.extension\lib" />
-      <recent name="E:\01_TenElephant_Project\2018_Project\01Extension\MyPyRevitExtentision\MyPyRevitExtentision\MyExtenstion.extension\Gaochao.tab\Gaochao.panel\BuildingAnaylsis_Chart.pulldown\OutPut_ElementPrice.pushbutton\lib" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Autodesk\MyPyRevitExtentision\TenElephant.extension\TenElephant.tab\TenElephant.panel\GaoChao.pulldown" />
-      <recent name="F:\Autodesk\MyPyRevitExtentision\TenElephant.extension\TenElephant.tab\TenElephant.panel\YangShuo.pulldown" />
-      <recent name="F:\Autodesk\MyPyRevitExtentision\MyExtenstion.extension\Gaochao.tab\Gaochao.panel\LocateElement.pulldown" />
-      <recent name="F:\Autodesk\MyPyRevitExtentision\MyExtenstion.extension\Gaochao.tab\Gaochao.panel\Structure_Create.pulldown" />
-      <recent name="F:\Autodesk\MyPyRevitExtentision\MyExtenstion.extension\Gaochao.tab\Gaochao.panel\Mesh.pulldown" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -370,7 +398,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.34309623" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1328125" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26875" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -398,28 +426,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/json/encoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1980" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/json/decoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3690">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/EditGeometry.pulldown/Surface_AddMaterial.pushbutton/script.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/DrawByJson.tab/QiaoZong.panel/Wall.pushbutton/script _Bake.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/OutPut_ElementPrice.pushbutton/lib/BAT_Element_Cover.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3060" />
@@ -519,13 +529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shared.lib/Element/Elements.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4140">
-          <caret line="165" column="16" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/DirectShape.pulldown/SATToFreeForm.pushbutton/script.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="718">
@@ -581,16 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/YangShuo.pulldown/CreateWallOpening.pushbutton/script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
-          <folding>
-            <element signature="e#42#97#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ZhangRan.pulldown/ReverseChoice.pushbutton/script.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -620,6 +613,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_From_Rhino.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="9" selection-start-line="9" selection-end-line="17" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared.lib/Helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="654">
+          <caret line="83" column="15" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
+          <folding>
+            <element signature="e#869#1113#0" />
+            <element signature="e#1150#2063#0" />
+            <element signature="e#2090#2877#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared.lib/Element/Elements.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="179" selection-start-line="179" selection-end-line="179" />
+          <folding>
+            <element signature="e#461#1078#0" />
+            <element signature="e#1103#1666#0" />
+            <element signature="e#1695#2955#0" />
+            <element signature="e#2982#3281#0" />
+            <element signature="e#3310#4180#0" />
+            <element signature="e#4204#4770#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/YangShuo.pulldown/CreateWallOpening.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1290">
+          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ZhangRan.pulldown/LastCreatedElement.pushbutton/script.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -630,32 +664,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shared.lib/Helper.py">
+    <entry file="file://$PROJECT_DIR$/Shared.lib/Element/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared.lib/bin/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="101" column="19" selection-start-line="101" selection-start-column="19" selection-end-line="101" selection-end-column="19" />
+        <state relative-caret-position="330">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_From_Rhino.pushbutton/script.py">
+    <entry file="file://$PROJECT_DIR$/Shared.lib/BAT_PyrevitHelper.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared.lib/bundle.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="9" selection-start-line="9" selection-end-line="17" selection-end-column="28" />
+        <state relative-caret-position="30">
+          <caret line="1" column="106" selection-start-line="1" selection-start-column="106" selection-end-line="1" selection-end-column="106" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/JoinWallAndBeam.pushbutton/script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
+        <state relative-caret-position="60">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
           <folding>
-            <element signature="e#42#76#0" expanded="true" />
-            <element signature="e#741#928#0" />
-            <element signature="e#970#1322#0" />
             <element signature="e#1426#3372#1" />
             <element signature="e#3423#4698#0" />
             <element signature="e#4743#4869#0" />
-            <element signature="e#4918#5037#0" />
+            <element signature="e#5109#5916#0" />
           </folding>
         </state>
       </provider>

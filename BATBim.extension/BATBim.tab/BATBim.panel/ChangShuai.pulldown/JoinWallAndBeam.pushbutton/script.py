@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
 __doc__="链接墙体与梁"
+import clr
 from pyrevit.framework import List
 from rpw.ui.forms import FlexForm, Label, ComboBox, TextBox, TextBox,Separator, Button,SelectFromList
 import rpw
 from rpw import db
 from pyrevit import revit, DB,UI
-from CSharp import FunctionHelper
+
+import sys
+
+print(sys.path)
+clr.AddReference("BAT_PyrevitHelper")
+from BAT_PyrevitHelper import FunctionHelper
 from  Helper import *
 
 
