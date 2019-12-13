@@ -10,7 +10,8 @@ import csv
 
 from System.Collections.Generic import List
 from Element.Elements import BAT_Wall
-from CSharp import FunctionHelper
+clr.AddReference("BAT_PyrevitHelper")
+from BAT_PyrevitHelper import FunctionHelper,CurveTangentAtPoint
 from  Helper import *
 
 hostapp = _HostApplication(__revit__)

@@ -6,12 +6,10 @@ from rpw.ui.forms import FlexForm, Label, ComboBox, TextBox, TextBox,Separator, 
 import rpw
 from rpw import db
 from pyrevit import revit, DB,UI
-
 import sys
-
-print(sys.path)
 clr.AddReference("BAT_PyrevitHelper")
 from BAT_PyrevitHelper import FunctionHelper
+
 from  Helper import *
 
 
@@ -213,8 +211,8 @@ def JoinWallAndFraming(wall,framings):
                 # get curve Intersection Result
                 results = FunctionHelper.BAT_ComputeClosestPoints(fWCurve, fLCurve)[0]
 
-                fWVector=CurveVectorAtPoint(fWCurve,results.XYZPointOnFirstCurve)
-                fLVector = CurveVectorAtPoint(fLCurve,results.XYZPointOnSecondCurve)
+                fWVector=FunctionHelper.CurveTangentAtPoint(fWCurve,results.XYZPointOnFirstCurve)
+                fLVector =FunctionHelper.CurveTangentAtPoint(fLCurve,results.XYZPointOnSecondCurve)
                 dot=fWVector.DotProduct(fLVector)
                 Width=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_WIDTH).AsDouble()
                 Height=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_HEIGHT).AsDouble()
