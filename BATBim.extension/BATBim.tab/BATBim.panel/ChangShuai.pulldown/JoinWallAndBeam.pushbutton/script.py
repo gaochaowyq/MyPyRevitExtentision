@@ -140,9 +140,16 @@ def ElementIntersectWith(Elements,BuiltInCategory):
         for i in elements:
             bSolid = GetFamilyInstanceSolid(i)
             if len(bSolid) != 0:
-                result = DB.BooleanOperationsUtils.ExecuteBooleanOperation(wSolid[0], bSolid[0],
+                try:
+
+                    result = DB.BooleanOperationsUtils.ExecuteBooleanOperation(wSolid[0], bSolid[0],
                                                                            DB.BooleanOperationsType.Intersect)
-                if result.Volume > 0.0001:
+                    Volume=result.Volume
+                except Exception as e:
+                    Volume=0
+                    print(e)
+                    print(i.Id)
+                if Volume > 0.0001:
                     #DB.JoinGeometryUtils.JoinGeometry(curdoc, w, i)
                     bFinal.append(i)
                     print("ID{}与ID{}相交".format(w.Id, i.Id))
@@ -209,25 +216,26 @@ def JoinWallAndFraming(wall,framings):
                 fWCurve=wallLocation.Curve
                 fLCurve=framingLocation.Curve
                 # get curve Intersection Result
-                results = FunctionHelper.BAT_ComputeClosestPoints(fWCurve, fLCurve)[0]
-
-                fWVector=FunctionHelper.CurveTangentAtPoint(fWCurve,results.XYZPointOnFirstCurve)
-                fLVector =FunctionHelper.CurveTangentAtPoint(fLCurve,results.XYZPointOnSecondCurve)
-                dot=fWVector.DotProduct(fLVector)
-                Width=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_WIDTH).AsDouble()
-                Height=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_HEIGHT).AsDouble()
-                Depth=wall.WallType.get_Parameter(DB.BuiltInParameter.WALL_ATTR_WIDTH_PARAM).AsDouble()
-                if -0.99<dot<0.99:
-                    createdElements=CreateOpenByPointAndDirection(openSymbol,results.XYZPointOnSecondCurve,fLVector,Width,Height,Depth+1)
-                    for i in createdElements:
-                        DB.InstanceVoidCutUtils.AddInstanceVoidCut (curdoc,wall,curdoc.GetElement(i) )
-
-
-
+                results = FunctionHelper.BAT_ComputeClosestPoints(fWCurve, fLCurve)#[0]
+                if len(results)!=0:
+                    # Open The Hole In The Wall For Framing
+                    fWVector=FunctionHelper.CurveTangentAtPoint(fWCurve,results.XYZPointOnFirstCurve)
+                    fLVector =FunctionHelper.CurveTangentAtPoint(fLCurve,results.XYZPointOnSecondCurve)
+                    dot=fWVector.DotProduct(fLVector)
+                    Width=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_WIDTH).AsDouble()
+                    Height=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_HEIGHT).AsDouble()
+                    Depth=wall.WallType.get_Parameter(DB.BuiltInParameter.WALL_ATTR_WIDTH_PARAM).AsDouble()
+                    if -0.99<dot<0.99:
+                        createdElements=CreateOpenByPointAndDirection(openSymbol,results.XYZPointOnSecondCurve,fLVector,Width,Height,Depth+1)
+                        for i in createdElements:
+                            DB.InstanceVoidCutUtils.AddInstanceVoidCut (curdoc,wall,curdoc.GetElement(i) )
+                    else:
+                        #make a open in the all
+                        pass
                 else:
-                    #make a open in the all
+                    # Move The Wall Top Down To the Buttom Of Beam
+                    
                     pass
-
 
 
             else:
