@@ -207,8 +207,6 @@ def CreateOpenByPointAndDirection(FamilySymbol,Point,Direction,Width,Height,Dept
 def JoinWallAndFraming(wall,framings):
     for framing in framings:
         framingType=framing.Symbol.Family.get_Parameter(DB.BuiltInParameter.FAMILY_STRUCT_MATERIAL_TYPE).AsInteger()
-
-
         if framingType==1:
             framingLocation=framing.Location
             wallLocation=wall.Location
@@ -225,13 +223,13 @@ def JoinWallAndFraming(wall,framings):
                 print(len(results))
                 if len(results)!=0:
                     # Open The Hole In The Wall For Framing
-                    fWVector=FunctionHelper.CurveTangentAtPoint(fWCurve,results.XYZPointOnFirstCurve)
-                    fLVector =FunctionHelper.CurveTangentAtPoint(fLCurve,results.XYZPointOnSecondCurve)
+                    fWVector=FunctionHelper.CurveTangentAtPoint(fWCurve,results[0].XYZPointOnFirstCurve)
+                    fLVector =FunctionHelper.CurveTangentAtPoint(fLCurve,results[0].XYZPointOnSecondCurve)
                     Width=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_WIDTH).AsDouble()
                     Height=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_HEIGHT).AsDouble()
                     Depth=wall.WallType.get_Parameter(DB.BuiltInParameter.WALL_ATTR_WIDTH_PARAM).AsDouble()
 
-                    createdElements=CreateOpenByPointAndDirection(openSymbol,results.XYZPointOnSecondCurve,fLVector,Width,Height,Depth+1)
+                    createdElements=CreateOpenByPointAndDirection(openSymbol,results[0].XYZPointOnSecondCurve,fLVector,Width,Height,Depth+1)
                     print("good")
                     for i in createdElements:
                         DB.InstanceVoidCutUtils.AddInstanceVoidCut (curdoc,wall,curdoc.GetElement(i) )
