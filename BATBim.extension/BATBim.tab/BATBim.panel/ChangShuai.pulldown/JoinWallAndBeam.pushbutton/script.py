@@ -225,9 +225,21 @@ def JoinWallAndFraming(wall,framings):
                     # Open The Hole In The Wall For Framing
                     fWVector=FunctionHelper.CurveTangentAtPoint(fWCurve,results[0].XYZPointOnFirstCurve)
                     fLVector =FunctionHelper.CurveTangentAtPoint(fLCurve,results[0].XYZPointOnSecondCurve)
-                    Width=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_WIDTH).AsDouble()
-                    Height=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_HEIGHT).AsDouble()
-                    Depth=wall.WallType.get_Parameter(DB.BuiltInParameter.WALL_ATTR_WIDTH_PARAM).AsDouble()
+                    try:
+                        Width=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_WIDTH).AsDouble()
+                    except:
+                        print("FramingId:{}".format(framing.Id))
+                        return
+                    try:
+                        Height=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_HEIGHT).AsDouble()
+                    except:
+                        print("FramingId:{}".format(framing.Id))
+                        return
+                    try:
+                        Depth=wall.WallType.get_Parameter(DB.BuiltInParameter.WALL_ATTR_WIDTH_PARAM).AsDouble()
+                    except:
+                        print("Wall:{}".format(wall.Id))
+                        return
 
                     createdElements=CreateOpenByPointAndDirection(openSymbol,results[0].XYZPointOnSecondCurve,fLVector,Width,Height,Depth+1)
                     print("good")
