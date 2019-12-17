@@ -208,6 +208,7 @@ def JoinWallAndFraming(wall,framings):
     for framing in framings:
         framingType=framing.Symbol.Family.get_Parameter(DB.BuiltInParameter.FAMILY_STRUCT_MATERIAL_TYPE).AsInteger()
 
+
         if framingType==1:
             framingLocation=framing.Location
             wallLocation=wall.Location
@@ -216,22 +217,25 @@ def JoinWallAndFraming(wall,framings):
                 fWCurve=wallLocation.Curve
                 fLCurve=framingLocation.Curve
                 # get curve Intersection Result
-                results = FunctionHelper.BAT_ComputeClosestPoints(fWCurve, fLCurve)#[0]
+                try:
+                    results = FunctionHelper.BAT_ComputeClosestPoints(fWCurve, fLCurve)#[0]
+                except:
+                    results=[]
+                    print("ID:{}".format(framing.Id))
+                print(len(results))
                 if len(results)!=0:
                     # Open The Hole In The Wall For Framing
                     fWVector=FunctionHelper.CurveTangentAtPoint(fWCurve,results.XYZPointOnFirstCurve)
                     fLVector =FunctionHelper.CurveTangentAtPoint(fLCurve,results.XYZPointOnSecondCurve)
-                    dot=fWVector.DotProduct(fLVector)
                     Width=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_WIDTH).AsDouble()
                     Height=framing.Symbol.get_Parameter(DB.BuiltInParameter.STRUCTURAL_SECTION_COMMON_HEIGHT).AsDouble()
                     Depth=wall.WallType.get_Parameter(DB.BuiltInParameter.WALL_ATTR_WIDTH_PARAM).AsDouble()
-                    if -0.99<dot<0.99:
-                        createdElements=CreateOpenByPointAndDirection(openSymbol,results.XYZPointOnSecondCurve,fLVector,Width,Height,Depth+1)
-                        for i in createdElements:
-                            DB.InstanceVoidCutUtils.AddInstanceVoidCut (curdoc,wall,curdoc.GetElement(i) )
-                    else:
-                        #make a open in the all
-                        pass
+
+                    createdElements=CreateOpenByPointAndDirection(openSymbol,results.XYZPointOnSecondCurve,fLVector,Width,Height,Depth+1)
+                    print("good")
+                    for i in createdElements:
+                        DB.InstanceVoidCutUtils.AddInstanceVoidCut (curdoc,wall,curdoc.GetElement(i) )
+
                 else:
                     # Move The Wall Top Down To the Buttom Of Beam
                     
