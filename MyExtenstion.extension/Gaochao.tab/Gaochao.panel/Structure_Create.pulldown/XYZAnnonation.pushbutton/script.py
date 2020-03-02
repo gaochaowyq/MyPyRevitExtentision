@@ -8,7 +8,7 @@ from Helper import *
 import csv
 uidoc = __revit__.ActiveUIDocument
 doc = __revit__.ActiveUIDocument.Document
-hostapp = _HostApplication(__revit__)
+hostapp = _HostApplication()
 print(hostapp.app.Language)
 
 if hostapp.app.Language.ToString()=="English_USA":
@@ -48,6 +48,8 @@ with open(LocationFile, 'rbU') as csvfile:
     header=spamreader.fieldnames
 
     for row in spamreader:
+        print(row)
+        """
         Main=row.get("Tittle")
         for name,point in row.items():
             if name!="Tittle":
@@ -59,11 +61,12 @@ with open(LocationFile, 'rbU') as csvfile:
                     except:
                         pass
                 Locations.append(p)
-        #point=[row[0],row[1],row[2],row[3]]
-        #Locations.append((point))
+        """
+        point=[row["Title"],row["X"],row["Y"],row["Z"]]
+        Locations.append((point))
 
 
-
+print(Locations)
 
 
 @rpw.db.Transaction.ensure('AnnonationPoint')
@@ -93,7 +96,9 @@ def PlaceAdaptiveCommponent(FamilySymbol,Index,Locations):
 
 AnnonationType = Value['FamilyName']
 
-for i in range(1,len(Locations)):
+
+
+for i in range(0,len(Locations)):
     try:
         PlaceAdaptiveCommponent(AnnonationType,Locations[i][0],[Locations[i][1:]])
         print("点:{Index}被成功创建".format(Index=Locations[i][0]))
