@@ -14,6 +14,11 @@ from pyrevit.framework import Stopwatch
 curview = revit.activeview
 curdoc=revit.doc
 
+import os
+import sys
+print(sys.path)
+
+"""
 selection = revit.pick_element()
 
 options = DB.Options()
@@ -23,7 +28,7 @@ Geometry=selection.get_Geometry(options)
 for i in Geometry:
     print(i.Transform.Origin)
 
-"""
+
 selection = revit.pick_elements()
 options=DB.Options()
 def GetElementSolid(Element):
