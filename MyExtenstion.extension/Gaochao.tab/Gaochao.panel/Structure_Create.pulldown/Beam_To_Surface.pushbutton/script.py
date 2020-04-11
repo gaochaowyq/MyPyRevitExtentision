@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__doc__ = "将梁附着在楼板底部"
+__doc__ = "返回选择物体的类型"
 import rpw
 import clr
 from rpw import db, doc
@@ -36,15 +36,16 @@ for beam in beams:
     try:
         startPoint = beam.Location.Curve.GetEndPoint(0)
         endPoint = beam.Location.Curve.GetEndPoint(1)
-
+        #_startPoint = surface.Project(startPoint).XYZPoint
+        #_endPoint = surface.Project(endPoint).XYZPoint
         referenceIntersector = DB.ReferenceIntersector( floor.Id, DB.FindReferenceTarget.Face,currentView)
 
-        sReferenceWithContext = referenceIntersector.Find(startPoint,DB.XYZ(0,0,1))
-        eReferenceWithContext = referenceIntersector.Find(endPoint, DB.XYZ(0, 0, 1))
+        sReferenceWithContext = referenceIntersector.FindNearest(startPoint,DB.XYZ(0,0,1))
+        eReferenceWithContext = referenceIntersector.FindNearest(endPoint, DB.XYZ(0, 0, 1))
 
 
-        _startPoint=sReferenceWithContext[1].GetReference().GlobalPoint
-        _endPoint = eReferenceWithContext[1].GetReference().GlobalPoint
+        _startPoint=sReferenceWithContext.GetReference().GlobalPoint
+        _endPoint = eReferenceWithContext.GetReference().GlobalPoint
 
         _locationLine = DB.Line.CreateBound(_startPoint, _endPoint)
         Level = doc.GetElement(beam.LevelId)
@@ -54,16 +55,3 @@ for beam in beams:
         DeleteFamilyInstance(beam.Id)
     except Exception as e:
         print(e)
-
-
-
-
-
-
-
-
-
-
-
-
-
