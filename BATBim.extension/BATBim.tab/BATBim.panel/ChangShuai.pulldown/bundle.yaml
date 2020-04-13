@@ -3,6 +3,7 @@ layout:
     - JoinWallAndBeam
     - AlignBeamAndFloor
     - InsideWall_ByRoom
+    - SolidRhinoToRevit
 title:
   en_us: ChangShuai
   chinese_s: 常帅

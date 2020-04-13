@@ -9,21 +9,54 @@ import json
 import pickle
 from Helper import *
 import math
+import random
 from pyrevit import forms
 from pyrevit.framework import Stopwatch
-curview = revit.activeview
+curview = revit.active_view
 curdoc=revit.doc
 
-selection = revit.pick_element()
+selections = revit.pick_elements()
+
+output=[]
+
+count=0
+for i in selections:
+    locaiton=i.Location
+    curve=locaiton.Curve
+    length=CovertToMM(curve.Length)
+
+    if length>3000:
+        startpoint=curve.GetEndPoint(0)
+        endpoint = curve.GetEndPoint(1)
+        flow=random.randint(10,20)
+        name=count
+        index=count
+        out={"startpoint":[0.1*CovertToMM(startpoint.X),0.1*CovertToMM(startpoint.Y),0.1*CovertToMM(startpoint.Z)],
+             "endpoint":[0.1*CovertToMM(endpoint.X),0.1*CovertToMM(endpoint.Y),0.1*CovertToMM(endpoint.Z)],
+             'flow':flow,"name":name,"index":index,'id':i.Id.IntegerValue}
+        output.append(out)
+    count+=1
+
+with open('c:/pipelocaiton.json','w') as f :
+    c=json.dumps(output,ensure_ascii=False)
+    f.write(c)
+
+
+
+"""
+print(selection)
+print(selection.UniqueId)
+
 
 options = DB.Options()
 
 Geometry=selection.get_Geometry(options)
 
-for i in Geometry:
-    print(i.Transform.Origin)
 
-"""
+for i in Geometry:
+    print(i)
+
+
 selection = revit.pick_elements()
 options=DB.Options()
 def GetElementSolid(Element):

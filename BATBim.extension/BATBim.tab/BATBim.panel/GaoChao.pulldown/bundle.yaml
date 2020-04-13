@@ -3,7 +3,10 @@ layout:
     - Direct3DContext
     - AddElementId
     - ModifyRoomParameter
-    
+    - RemoveBaseJoinAndCut
+    - InstanceElement
+    - SolidRoom
+    - MepSystemLine
 title:
   en_us: GaoChao
   chinese_s: 高超

@@ -5,7 +5,7 @@ import time
 import  sys
 clr.AddReference('RevitAPI')
 clr.AddReference('RevitAPIUI')
-clr.AddReferenceToFileAndPath(r'C:\Users\2016028\source\repos\CssclassTest\CssclassTest\bin\Debug\CssclassTest.dll')
+clr.AddReferenceToFileAndPath(r'G:\十象程序\source\repos\CssclassTest\CssclassTest\bin\Debug\CssclassTest.dll')
 from  CssclassTest import RevitElementDrawingServer
 import rpw
 import pyrevit
