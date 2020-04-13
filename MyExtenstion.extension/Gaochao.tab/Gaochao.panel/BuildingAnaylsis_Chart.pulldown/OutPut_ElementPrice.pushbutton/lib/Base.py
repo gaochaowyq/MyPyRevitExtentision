@@ -30,6 +30,9 @@ class Group:
 class GetAllBase(object):
     def __init__(self):
         self.param_id = DB.ElementId(DB.BuiltInParameter.UNIFORMAT_CODE)
+        self.AssembleCode = ""
+        self.ClassName = ""
+        self.unit = ''
         #KEYNOTE_PARAM
         self.param_id_Keynote = DB.ElementId(DB.BuiltInParameter.KEYNOTE_PARAM)
     def Elements(self):

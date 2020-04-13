@@ -3,14 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="f1cd7a08-99a6-47c2-91ac-b8f1cf4651c8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/bundle.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/bundle.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/GaoChao.pulldown/Direct3DContext.pushbutton/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/GaoChao.pulldown/Direct3DContext.pushbutton/script.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/GaoChao.pulldown/bundle.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/GaoChao.pulldown/bundle.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/LocateElement.pulldown/bundle.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/LocateElement.pulldown/bundle.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Test.pulldown/ReturnTypeOfSelection.pushbutton/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Test.pulldown/ReturnTypeOfSelection.pushbutton/script.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/AlignBeamAndFloor.pushbutton/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/AlignBeamAndFloor.pushbutton/script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/bundle.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/bundle.yaml" afterDir="false" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +29,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="script.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/GaoChao.pulldown/SolidRoom.pushbutton/script.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -33,11 +38,21 @@
               <folding>
                 <element signature="e#88#98#0" expanded="true" />
                 <element signature="e#2044#3784#0" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_To_Surface.pushbutton/script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="56" selection-end-column="16" />
+              <folding>
+                <element signature="e#46#56#0" expanded="true" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="script.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/SolidRhinoToRevit.pushbutton/script.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -45,6 +60,98 @@
               <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
               <folding>
                 <element signature="e#51#61#0" expanded="true" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/AlignBeamAndFloor.pushbutton/script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="39" column="63" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
+              <folding>
+                <element signature="e#46#56#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_From_Surface.pushbutton/script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="122" column="4" lean-forward="true" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
+              <folding>
+                <element signature="e#47#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_From_Rhino.pushbutton/script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-812">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="e#48#88#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_From_Rhino_New.pushbutton/script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1008" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Shared.lib/Element/Elements.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+              <folding>
+                <element signature="e#21#39#0" expanded="true" />
+                <element signature="e#463#1080#0" />
+                <element signature="e#1105#1668#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Wall_Modify.pulldown/Wall_Split.pushbutton/script.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Wall_Modify.pulldown/InsideWall_ByLine.pushbutton/script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/AllElementPrice.pushbutton/script.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2324">
+              <caret line="93" column="71" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="71" />
+              <folding>
+                <element signature="e#47#56#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/OutPut_ElementPrice.pushbutton/lib/BAT_Element_Cover.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="e#26#53#0" expanded="true" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
               </folding>
             </state>
           </provider>
@@ -81,7 +188,12 @@
       <find>CovertToMM</find>
       <find>print</find>
       <find>StructuralType</find>
+<<<<<<< HEAD
       <find>e</find>
+=======
+      <find>EditRecordWindow</find>
+      <find>script</find>
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
     </findStrings>
     <replaceStrings>
       <replace />
@@ -93,6 +205,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/DirectShape.pulldown/_layout" />
         <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/DirectShape.pulldown/CreateSurface.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/MyExtenstion.extension/lib/RhinoToRevit/RhinoToRevit.py" />
@@ -102,6 +215,8 @@
         <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Dynamo.pulldown/_layout" />
         <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Dynamo.pulldown/DynamoTest.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/YangShuo.pulldown/GetLightingData.pushbutton/script.py" />
+=======
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
         <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/XYZAnnonation.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/_layout" />
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/ChangShuai.pulldown/_layout" />
@@ -126,12 +241,12 @@
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/GaoChao.pulldown/ModifyRoomParameter.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/ChangShuai.pulldown/JoinWallAndBeam.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/Shared.lib/Helper.py" />
-        <option value="$PROJECT_DIR$/Shared.lib/Element/Elements.py" />
         <option value="$PROJECT_DIR$/Shared.lib/bin/__init__.py" />
         <option value="$PROJECT_DIR$/Shared.lib/bundle.yaml" />
         <option value="$PROJECT_DIR$/Shared.lib/BAT_PyrevitHelper.py" />
         <option value="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/YangShuo.pulldown/CreateWallOpening.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/JoinWallAndBeam.pushbutton/script.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/LocateElement.pulldown/bundle.yaml" />
         <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/LocateElement.pulldown/MEPToBIAS.pushbutton/script.py" />
         <option value="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/GaoChao.pulldown/RemoveBaseJoinAndCut.pushbutton/script.py" />
@@ -161,13 +276,44 @@
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1096" />
+=======
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/bundle.yaml" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BCoder.pulldown/bundle.yaml" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BCoder.pulldown/BCoderManger.pushbutton/keynotesdb.py" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BCoder.pulldown/BCoderManger.pushbutton/script.py" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Test.pulldown/ReturnTypeOfSelection.pushbutton/script.py" />
+        <option value="$USER_HOME$/AppData/Roaming/pyRevit-Master/extensions/pyRevitTools.extension/pyRevit.tab/Drawing Set.panel/Keynotes.pushbutton/script.py" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/OutPut_ElementPrice.pushbutton/lib/Base.py" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/OutPut_ElementPrice.pushbutton/lib/Https.py" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Test.pulldown/HTTPS.pushbutton/script.py" />
+        <option value="$PROJECT_DIR$/Shared.lib/Collector/__init__.py" />
+        <option value="$PROJECT_DIR$/Shared.lib/Element/Elements.py" />
+        <option value="$PROJECT_DIR$/Shared.lib/Element/ElementBase.py" />
+        <option value="$PROJECT_DIR$/Shared.lib/Collector/ElementCollector.py" />
+        <option value="$USER_HOME$/AppData/Roaming/pyRevit-Master/extensions/pyRevitTools.extension/pyRevit.tab/Project.panel/ptools2.stack/Load More Types.pushbutton/script.py" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/bundle.yaml" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/lib/__init__.py" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/Get_ElementDetailPrice.pushbutton/script.py" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/Set_ElementPrice.pushbutton/script.py" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/lib/ElementPrice.py" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/bundle.yaml" />
+        <option value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_To_Surface.pushbutton/script.py" />
+        <option value="$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/AlignBeamAndFloor.pushbutton/script.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="104" />
+    <option name="y" value="48" />
+    <option name="width" value="1993" />
+    <option name="height" value="1351" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -208,44 +354,128 @@
               <item name="BATBim.tab" type="462c0819:PsiDirectoryNode" />
               <item name="BATBim.panel" type="462c0819:PsiDirectoryNode" />
               <item name="ChangShuai.pulldown" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="SolidRhinoToRevit.pushbutton" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="AlignBeamAndFloor.pushbutton" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
             </path>
             <path>
               <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="BATBim.extension" type="462c0819:PsiDirectoryNode" />
               <item name="BATBim.tab" type="462c0819:PsiDirectoryNode" />
               <item name="BATBim.panel" type="462c0819:PsiDirectoryNode" />
               <item name="GaoChao.pulldown" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
             </path>
             <path>
               <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="BATBim.extension" type="462c0819:PsiDirectoryNode" />
               <item name="BATBim.tab" type="462c0819:PsiDirectoryNode" />
               <item name="BATBim.panel" type="462c0819:PsiDirectoryNode" />
               <item name="GaoChao.pulldown" type="462c0819:PsiDirectoryNode" />
               <item name="Direct3DContext.pushbutton" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.tab" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
             </path>
             <path>
               <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="BATBim.extension" type="462c0819:PsiDirectoryNode" />
               <item name="BATBim.tab" type="462c0819:PsiDirectoryNode" />
               <item name="BATBim.panel" type="462c0819:PsiDirectoryNode" />
               <item name="GaoChao.pulldown" type="462c0819:PsiDirectoryNode" />
               <item name="SolidRoom.pushbutton" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+=======
               <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.tab" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.panel" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
               <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
               <item name="Gaochao.tab" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.panel" type="462c0819:PsiDirectoryNode" />
+              <item name="Structure_Create.pulldown" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+              <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.tab" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.panel" type="462c0819:PsiDirectoryNode" />
+              <item name="Structure_Create.pulldown" type="462c0819:PsiDirectoryNode" />
+              <item name="Beam_From_Rhino.pushbutton" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+              <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.tab" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.panel" type="462c0819:PsiDirectoryNode" />
+              <item name="Structure_Create.pulldown" type="462c0819:PsiDirectoryNode" />
+              <item name="Beam_From_Rhino_New.pushbutton" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
+            </path>
+            <path>
+              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+              <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+=======
+              <item name="Gaochao.tab" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.panel" type="462c0819:PsiDirectoryNode" />
+              <item name="Structure_Create.pulldown" type="462c0819:PsiDirectoryNode" />
+              <item name="Beam_From_Surface.pushbutton" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+              <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.tab" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.panel" type="462c0819:PsiDirectoryNode" />
+              <item name="Structure_Create.pulldown" type="462c0819:PsiDirectoryNode" />
+              <item name="Beam_To_Surface.pushbutton" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+              <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.tab" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.panel" type="462c0819:PsiDirectoryNode" />
+              <item name="Wall_Modify.pulldown" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+              <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.tab" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.panel" type="462c0819:PsiDirectoryNode" />
+              <item name="Wall_Modify.pulldown" type="462c0819:PsiDirectoryNode" />
+              <item name="InsideWall_ByLine.pushbutton" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
+            </path>
+            <path>
+              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
+              <item name="MyExtenstion.extension" type="462c0819:PsiDirectoryNode" />
+              <item name="Gaochao.tab" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+=======
+              <item name="Gaochao.panel" type="462c0819:PsiDirectoryNode" />
+              <item name="Wall_Modify.pulldown" type="462c0819:PsiDirectoryNode" />
+              <item name="Wall_Split.pushbutton" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
             </path>
             <path>
               <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
@@ -256,22 +486,37 @@
               <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyPyRevitExtentision" type="462c0819:PsiDirectoryNode" />
               <item name="Shared.lib" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="RhinoToRevit" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="Element" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="MyPyRevitExtentision" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; IronPython 2.7 &gt;" type="70bed36:NamedLibraryElementNode" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="last_opened_file_path" value="F:/D3Django" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+<<<<<<< HEAD
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Autodesk\MyPyRevitExtentision\BATBim.extension\BATBim.tab\BATBim.panel\ChangShuai.pulldown" />
       <recent name="F:\Autodesk\MyPyRevitExtentision\BATBim.extension\BATBim.tab\BATBim.panel\GaoChao.pulldown" />
@@ -279,12 +524,21 @@
       <recent name="F:\Autodesk\MyPyRevitExtentision\Shared.bin" />
       <recent name="F:\Autodesk\MyPyRevitExtentision\BATBim.extension\bin" />
     </key>
+=======
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\GitHub\MyPyRevitExtentision\MyExtenstion.extension\Gaochao.tab\Gaochao.panel\BCoder.pulldown\BCoderManger.pushbutton" />
       <recent name="F:\Autodesk\MyPyRevitExtentision\BATBim.extension\bin" />
       <recent name="F:\Autodesk\MyPyRevitExtentision\TenElephant.extension\TenElephant.tab\TenElephant.panel\ChangShuai.pulldown" />
       <recent name="F:\Autodesk\MyPyRevitExtentision\TenElephant.extension\TenElephant.tab\TenElephant.panel\ZhangRan.pulldown" />
       <recent name="E:\01_TenElephant_Project\2018_Project\01Extension\MyPyRevitExtentision\MyPyRevitExtentision\MyExtenstion.extension\lib\CodeInterperator" />
-      <recent name="E:\01_TenElephant_Project\2018_Project\01Extension\MyPyRevitExtentision\MyPyRevitExtentision\MyExtenstion.extension\lib" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GitHub\MyPyRevitExtentision\MyExtenstion.extension\Gaochao.tab\Gaochao.panel\Structure_Create.pulldown" />
+      <recent name="D:\GitHub\MyPyRevitExtentision\MyExtenstion.extension\Gaochao.tab\Gaochao.panel\BuildingAnaylsis_Chart.pulldown" />
+      <recent name="D:\GitHub\MyPyRevitExtentision\MyExtenstion.extension\Gaochao.tab\Gaochao.panel\BuildingAnaylsis_Chart.pulldown\Set_ElementPrice.pushbutton" />
+      <recent name="D:\GitHub\MyPyRevitExtentision\MyExtenstion.extension\Gaochao.tab\Gaochao.panel" />
+      <recent name="F:\Autodesk\MyPyRevitExtentision\Shared.bin" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -300,44 +554,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.JsonReader">
-    <configuration name="JsonReader" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="MyPyRevitExtentision" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MyExtenstion.extension/lib" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MyExtenstion.extension/lib/JsonReader.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="MyPyRevitExtentision" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MyExtenstion.extension/lib" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MyExtenstion.extension/lib/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -358,13 +574,58 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+    <configuration name="JsonReader" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="MyPyRevitExtentision" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MyExtenstion.extension/lib" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MyExtenstion.extension/lib/JsonReader.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="MyPyRevitExtentision" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MyExtenstion.extension/lib" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MyExtenstion.extension/lib/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
       <arguments />
       <envs />
+      <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Python.test" />
@@ -387,6 +648,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513760066461</updated>
+      <workItem from="1583639215325" duration="10368000" />
+      <workItem from="1583755305797" duration="25679000" />
+      <workItem from="1584363581403" duration="6322000" />
+      <workItem from="1584448688905" duration="4232000" />
+      <workItem from="1584533200037" duration="4121000" />
+      <workItem from="1584888638061" duration="152000" />
+      <workItem from="1586528634711" duration="862000" />
+      <workItem from="1586566501966" duration="6549000" />
     </task>
     <task id="LOCAL-00001" summary="WellDone">
       <created>1530428279314</created>
@@ -398,7 +667,11 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="58285000" />
+  </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
@@ -414,34 +687,44 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
+=======
+    <frame x="104" y="48" width="1993" height="1351" extended-state="1" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17847905" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32946146" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34309623" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32946146" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="SciView" order="5" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="WellDone" />
     <option name="LAST_COMMIT_MESSAGE" value="WellDone" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="9" />
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/TenElephant.extension/TenElephant.tab/TenElephant.panel/YangShuo.pulldown/_layout" />
     <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_From_Surface.pushbutton/script.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -602,11 +885,167 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+=======
+    <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ZhangRan.pulldown/LastCreatedElement.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared.lib/Element/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared.lib/bin/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/Shared.lib/BAT_PyrevitHelper.py" />
+    <entry file="file://$PROJECT_DIR$/Shared.lib/bundle.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="106" selection-start-line="1" selection-start-column="106" selection-end-line="1" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/JoinWallAndBeam.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="227" column="24" selection-start-line="227" selection-start-column="20" selection-end-line="227" selection-end-column="24" />
+          <folding>
+            <element signature="e#41#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/icon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BCoder.pulldown/bundle.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/bundle.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/YangShuo.pulldown/CreateWallOpening.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="16" column="37" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+          <folding>
+            <element signature="e#42#97#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BCoder.pulldown/BCoderManger.pushbutton/KeynoteManagerWindow.xaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2100" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BCoder.pulldown/BCoderManger.pushbutton/icon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Roaming/pyRevit-Master/bin/engines/pyRevitLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/OutPut_ElementPrice.pushbutton/lib/Https.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/OutPut_ElementPrice.pushbutton/lib/Minix.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Roaming/pyRevit-Master/extensions/pyRevitTools.extension/pyRevit.tab/Drawing Set.panel/Keynotes.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="25" column="97" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="97" />
+          <folding>
+            <element signature="e#0#83#1" />
+            <element signature="e#137#146#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/Set_ElementPrice.pushbutton/script_Bake.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="174" column="16" lean-forward="true" selection-start-line="58" selection-end-line="174" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/OutPut_ElementPrice.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="25" />
+          <folding>
+            <element signature="e#43#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Roaming/pyRevit-Master/extensions/pyRevitTools.extension/pyRevit.tab/Project.panel/ptools.stack/Family.pulldown/Family QuickCheck.pushbutton/FamilyQuickcheck_script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="26" />
+          <folding>
+            <element signature="e#229#258#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Roaming/pyRevit-Master/extensions/pyRevitTools.extension/pyRevit.tab/Project.panel/ptools2.stack/Load More Types.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="103" selection-start-line="103" selection-end-line="103" selection-end-column="39" />
+          <folding>
+            <element signature="e#84#93#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/bundle.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/Get_ElementDetailPrice.pushbutton/.idea/misc.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared.lib/Collector/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/LocateElement.pulldown/UpdateLocation.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4228">
+          <caret line="158" column="106" lean-forward="true" selection-start-line="158" selection-start-column="40" selection-end-line="158" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/LocateElement.pulldown/AddLocationForGIS.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1067">
+          <caret line="27" selection-start-line="27" selection-end-line="27" selection-end-column="80" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/GaoChao.pulldown/bundle.yaml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="240">
           <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
         </state>
@@ -649,11 +1088,126 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="9" column="14" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="14" />
+=======
+        <state relative-caret-position="476">
+          <caret line="24" selection-start-line="24" selection-end-line="24" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Test.pulldown/HTTPS.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1512">
+          <caret line="56" selection-start-line="56" selection-end-line="72" selection-end-column="48" />
+          <folding>
+            <element signature="e#50#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/OutPut_ElementPrice.pushbutton/lib/Base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding>
+            <element signature="e#26#36#0" expanded="true" />
+            <element signature="e#361#782#0" />
+            <element signature="e#1124#2141#0" />
+            <element signature="e#3330#4629#0" />
+            <element signature="e#4661#5253#0" />
+            <element signature="e#5287#5404#0" />
+            <element signature="e#5461#5956#0" />
+            <element signature="e#5996#7082#0" />
+            <element signature="e#7130#8214#0" />
+            <element signature="e#8256#8489#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared.lib/Element/ElementBase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/lib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/Set_ElementPrice.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1596">
+          <caret line="71" column="61" selection-start-line="71" selection-start-column="61" selection-end-line="71" selection-end-column="61" />
+          <folding>
+            <element signature="e#46#56#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Test.pulldown/ReturnTypeOfSelection.pushbutton/script.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/Get_ElementDetailPrice.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BCoder.pulldown/BCoderManger.pushbutton/EditRecord.xaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/lib/ElementPrice.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2660">
+          <caret line="99" column="78" selection-start-line="99" selection-start-column="78" selection-end-line="99" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/bundle.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Roaming/pyRevit-Master/extensions/pyRevitTools.extension/pyRevit.tab/Drawing Set.panel/views.stack/Schedules.pulldown/Create Schedule from CSV.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BCoder.pulldown/BCoderManger.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25592">
+          <caret line="934" column="32" selection-start-line="934" selection-start-column="16" selection-end-line="934" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#83#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BCoder.pulldown/BCoderManger.pushbutton/keynotesdb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="34" />
+          <folding>
+            <element signature="e#1122#1512#0" />
+            <element signature="e#1562#2094#0" />
+            <element signature="e#2143#2453#0" />
+            <element signature="e#2491#3881#0" />
+            <element signature="e#3912#7852#0" />
+          </folding>
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Test.pulldown/ReturnTypeOfSelection.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="300">
           <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
         </state>
@@ -666,10 +1220,24 @@
           <folding>
             <element signature="e#88#98#0" expanded="true" />
             <element signature="e#2044#3784#0" />
+=======
+        <state relative-caret-position="140">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared.lib/Collector/ElementCollector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="72" />
+          <folding>
+            <element signature="e#26#36#0" expanded="true" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/DirectShape.pulldown/CreateSurface.pushbutton/script.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2300">
@@ -704,6 +1272,91 @@
           <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
           <folding>
             <element signature="e#51#61#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/AllElementPrice.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2324">
+          <caret line="93" column="71" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="71" />
+          <folding>
+            <element signature="e#47#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/BuildingAnaylsis_Chart.pulldown/OutPut_ElementPrice.pushbutton/lib/BAT_Element_Cover.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#26#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Wall_Modify.pulldown/Wall_Split.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Wall_Modify.pulldown/InsideWall_ByLine.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_From_Rhino_New.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1008" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_From_Rhino.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-812">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#48#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared.lib/Element/Elements.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+          <folding>
+            <element signature="e#21#39#0" expanded="true" />
+            <element signature="e#463#1080#0" />
+            <element signature="e#1105#1668#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_From_Surface.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="122" column="4" lean-forward="true" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
+          <folding>
+            <element signature="e#47#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyExtenstion.extension/Gaochao.tab/Gaochao.panel/Structure_Create.pulldown/Beam_To_Surface.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="56" selection-end-column="16" />
+          <folding>
+            <element signature="e#46#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BATBim.extension/BATBim.tab/BATBim.panel/ChangShuai.pulldown/AlignBeamAndFloor.pushbutton/script.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="39" column="63" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
+          <folding>
+            <element signature="e#46#56#0" expanded="true" />
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
           </folding>
         </state>
       </provider>

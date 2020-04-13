@@ -15,6 +15,7 @@ from pyrevit.framework import Stopwatch
 curview = revit.active_view
 curdoc=revit.doc
 
+<<<<<<< HEAD
 selections = revit.pick_elements()
 
 output=[]
@@ -47,6 +48,14 @@ with open('c:/pipelocaiton.json','w') as f :
 print(selection)
 print(selection.UniqueId)
 
+=======
+import os
+import sys
+print(sys.path)
+
+"""
+selection = revit.pick_element()
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
 
 options = DB.Options()
 
@@ -57,6 +66,10 @@ for i in Geometry:
     print(i)
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6abd85293f4d93b2471d78ef71d0ba6a2c94bd75
 selection = revit.pick_elements()
 options=DB.Options()
 def GetElementSolid(Element):
