@@ -2,6 +2,7 @@
 __doc__ = "将梁附着在楼板底部"
 import rpw
 import clr
+from pyrevit import forms
 from rpw import db, doc
 from pyrevit import revit, DB, HOST_APP, UI
 from rpw.ui.forms import FlexForm, Label, ComboBox, TextBox, TextBox,Separator, Button,SelectFromList
@@ -19,7 +20,13 @@ beams=revit.pick_elements()
 
 currentView=revit.uidoc.ActiveView
 
-
+res = forms.alert("请选择板顶或板底",
+                  options=["板顶",
+                           "板底"])
+if res == "板顶":
+    surfaceRef=0
+else:
+    surfaceRef=1
 
 @rpw.db.Transaction.ensure('CreateBeam')
 def CreateBeam(Curve, FamilySymbol, Level, StructureType):
@@ -43,8 +50,8 @@ for beam in beams:
         eReferenceWithContext = referenceIntersector.Find(endPoint, DB.XYZ(0, 0, 1))
 
 
-        _startPoint=sReferenceWithContext[1].GetReference().GlobalPoint
-        _endPoint = eReferenceWithContext[1].GetReference().GlobalPoint
+        _startPoint=sReferenceWithContext[surfaceRef].GetReference().GlobalPoint
+        _endPoint = eReferenceWithContext[surfaceRef].GetReference().GlobalPoint
 
         _locationLine = DB.Line.CreateBound(_startPoint, _endPoint)
         Level = doc.GetElement(beam.LevelId)
