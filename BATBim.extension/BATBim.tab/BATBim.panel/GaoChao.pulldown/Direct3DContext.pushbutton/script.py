@@ -43,7 +43,7 @@ def AddMultipleRevitElementServers(uidoc):
         uidoc.UpdateAllOpenViews()
 
 #c=RevitElementDrawingServer(uidoc,picked[0],DB.XYZ(0,0,10))
-for i in range(0,1000):
+for i in range(0,10):
     m_offset = DB.XYZ(1000, 100, 10+i)
     b=AddMultipleRevitElementServers(uidoc)
 

@@ -10,6 +10,7 @@ from pyrevit import revit,DB,UI,forms,HOST_APP
 import System
 from System.Collections.Generic import List
 from pyrevit.framework import Stopwatch
+from Helper import CovertToM2
 
 ######################################
 options=DB.Options()
@@ -21,6 +22,33 @@ def GetElementSolid(Element):
             if i.Volume!=0:
                 Solids.append(i)
     return Solids
+
+class ElementParameter():
+
+    @staticmethod
+    def Value(Element,Name):
+        parameters=Element.GetParameters(Name)
+
+    @staticmethod
+    def ParameterValue(Parameter):
+        StorageType=Parameter.StorageType
+        if StorageType==DB.StorageType.Integer:
+            pass
+        elif StorageType==DB.StorageType.Double:
+            pass
+        elif StorageType==DB.StorageType.String:
+            pass
+        elif StorageType==DB.StorageType.ElementId:
+            pass
+        else:
+            pass
+
+
+
+
+
+
+
 
 
 # by TessellatedShapeBuilder
@@ -111,15 +139,6 @@ class FlipSolidNormal:
 
         print(result)
         return result
-
-
-
-
-
-
-
-
-
 ########################################
 #selection = revit.pick_element_by_category("Rooms")
 
@@ -128,6 +147,9 @@ with db.Transaction('UnCutElement'):
     directShapeLibrary = DB.DirectShapeLibrary.GetDirectShapeLibrary(doc)
 
     directShapeLibrary.Reset()
+
+
+
 
 
 @rpw.db.Transaction.ensure('SolidRoom')
@@ -156,9 +178,11 @@ def SolidRoom(Room):
 
     wrapedNewRoom=db.Element(ds)
 
-    wrapedNewRoom.parameters['Area']=round(Room.Area,1)
+    wrapedNewRoom.parameters['Area']=round(CovertToM2(Room.Area),1)
 
     wrapedNewRoom.parameters['Price'] = Room.Area*10000
+
+    wrapedNewRoom.parameters['BAT_Area'] = db.Element(Room).parameters['BAT_Area'].value
 
     wrapedNewRoom.parameters['InterWallType'] = Room.Parameter[DB.BuiltInParameter.ROOM_FINISH_WALL].AsString()
 

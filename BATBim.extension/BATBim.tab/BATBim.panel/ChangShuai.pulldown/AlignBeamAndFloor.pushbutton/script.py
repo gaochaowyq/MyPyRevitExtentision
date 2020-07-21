@@ -36,31 +36,44 @@ def DeleteFamilyInstance(FamilyInstanceId):
     doc.Delete(FamilyInstanceId)
 
 
+def getProjectedPoints(point,floor,surfaceRef=0):
+    referenceIntersector = DB.ReferenceIntersector(floor.Id, DB.FindReferenceTarget.Face, currentView)
+    ReferenceWithContext = referenceIntersector.Find(point, DB.XYZ(0, 0, 1))
+    newPoint = ReferenceWithContext[surfaceRef].GetReference().GlobalPoint
+    return newPoint
+
 
 
 
 for beam in beams:
-    try:
-        startPoint = beam.Location.Curve.GetEndPoint(0)
-        endPoint = beam.Location.Curve.GetEndPoint(1)
 
-        referenceIntersector = DB.ReferenceIntersector( floor.Id, DB.FindReferenceTarget.Face,currentView)
+    if isinstance(beam.Location.Curve,DB.Arc):
+        print("不支持弧线梁")
+    elif isinstance(beam.Location.Curve,DB.Line):
+    
+        try:
+            startPoint = beam.Location.Curve.GetEndPoint(0)
+            endPoint = beam.Location.Curve.GetEndPoint(1)
 
-        sReferenceWithContext = referenceIntersector.Find(startPoint,DB.XYZ(0,0,1))
-        eReferenceWithContext = referenceIntersector.Find(endPoint, DB.XYZ(0, 0, 1))
+            referenceIntersector = DB.ReferenceIntersector( floor.Id, DB.FindReferenceTarget.Face,currentView)
+
+            sReferenceWithContext = referenceIntersector.Find(startPoint,DB.XYZ(0,0,1))
+            eReferenceWithContext = referenceIntersector.Find(endPoint, DB.XYZ(0, 0, 1))
 
 
-        _startPoint=sReferenceWithContext[surfaceRef].GetReference().GlobalPoint
-        _endPoint = eReferenceWithContext[surfaceRef].GetReference().GlobalPoint
+            _startPoint=sReferenceWithContext[surfaceRef].GetReference().GlobalPoint
+            _endPoint = eReferenceWithContext[surfaceRef].GetReference().GlobalPoint
 
-        _locationLine = DB.Line.CreateBound(_startPoint, _endPoint)
-        Level = doc.GetElement(beam.LevelId)
-        FramingSymbol = beam.Symbol
-        StructuralType = beam.StructuralType
-        c = CreateBeam(_locationLine, FramingSymbol, Level, StructuralType)
-        DeleteFamilyInstance(beam.Id)
-    except Exception as e:
-        print(e)
+            _locationLine = DB.Line.CreateBound(_startPoint, _endPoint)
+            Level = doc.GetElement(beam.LevelId)
+            FramingSymbol = beam.Symbol
+            StructuralType = beam.StructuralType
+            c = CreateBeam(_locationLine, FramingSymbol, Level, StructuralType)
+            DeleteFamilyInstance(beam.Id)
+        except Exception as e:
+            print(e)
+    else:
+        print("The Location.Curve Type is not correct")
 
 
 

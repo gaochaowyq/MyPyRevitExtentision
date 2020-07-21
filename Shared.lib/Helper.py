@@ -113,3 +113,4 @@ class LG_CHS():
     WALL_Area = "面积"
     WALL_Volume = "体积"
 
+
