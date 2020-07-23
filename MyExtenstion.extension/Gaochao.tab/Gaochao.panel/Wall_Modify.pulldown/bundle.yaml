@@ -1,5 +1,4 @@
 layout:
-    - Wall_Split
     - InsideWall_ByRoom
     - InsideWall_ByLine
     - Wall_CurtainWall_Test

@@ -4,6 +4,7 @@ layout:
     - AlignBeamAndFloor
     - InsideWall_ByRoom
     - SolidRhinoToRevit
+    - Element_Split
 title:
   en_us: ChangShuai
   chinese_s: 常帅
