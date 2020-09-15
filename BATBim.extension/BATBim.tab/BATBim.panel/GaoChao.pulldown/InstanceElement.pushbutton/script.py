@@ -47,6 +47,8 @@ def GetFamilyInstanceSolid(Element):
 allColumn = rpw.db.Collector(of_category='OST_StructuralColumns', is_type=False).get_elements(wrapped=False)
 
 allFraming = rpw.db.Collector(of_category='OST_StructuralFraming', is_type=False).get_elements(wrapped=False)
+
+picked=revit.pick_element()
 @rpw.db.Transaction.ensure('ResetColumnToInstance')
 def ResetColumnToInstance(Element):
     for element in Element:
@@ -106,6 +108,6 @@ def ResetBeamToInstance(Element):
             print("ID{}Wrong".format(element.Id))
 
 ResetColumnToInstance(allColumn)
-ResetBeamToInstance(allFraming)
+#ResetBeamToInstance(allFraming)
 
-
+#ResetBeamToInstance([picked])

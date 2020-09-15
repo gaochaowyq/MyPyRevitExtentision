@@ -1,0 +1,17 @@
+layout:
+    - MaterialCheck
+title:
+  en_us: BIMCheck
+  chinese_s: 模型检查
+
+
+# bundle tooltip
+
+tooltip:
+  en_us: Revit Plugin For BIMCheck
+  chinese_s: 专属模型检查
+
+
+
+# bundle author
+author: GaoChao
