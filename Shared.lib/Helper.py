@@ -75,6 +75,7 @@ class LG_EUN():
     WALL_Length = "Length"
     WALL_Area = "Area"
     WALL_Volume = "Volume"
+    UNIFORMAT_CODE="Assembly Code"
 
 
 
@@ -112,5 +113,6 @@ class LG_CHS():
     WALL_Length = "长度"
     WALL_Area = "面积"
     WALL_Volume = "体积"
+    UNIFORMAT_CODE = "部件代码"
 
 

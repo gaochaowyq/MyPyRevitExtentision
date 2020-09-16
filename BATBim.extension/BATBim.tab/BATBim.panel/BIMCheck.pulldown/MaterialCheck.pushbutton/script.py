@@ -26,11 +26,20 @@ for i in allElementsInView:
     materials=i.GetMaterialIds(False)
     name=i.Name
     materialNames=[]
+    """
     if isinstance(i,DB.FamilyInstance):
         type=i.Symbol
         assemblyCode=type.get_Parameter(DB.BuiltInParameter.UNIFORMAT_CODE).AsString()
     else:
         assemblyCode=None
+    """
+    wrappedElement=db.Element(i)
+    try:
+        assemblyCode=wrappedElement.type.parameters[ParameterName.UNIFORMAT_CODE].value
+    except:
+        assemblyCode=None
+
+
     for c in materials:
         m=doc.GetElement(c)
         materialNames.append(m.Name)
@@ -39,6 +48,7 @@ for i in allElementsInView:
 
     else:
         print("name:{},assemblyCode{},materials:{}".format(name,assemblyCode,name))
+
 
 
 
