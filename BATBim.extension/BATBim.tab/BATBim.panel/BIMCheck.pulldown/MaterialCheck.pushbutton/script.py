@@ -44,7 +44,10 @@ for i in allElementsInView:
         m=doc.GetElement(c)
         materialNames.append(m.Name)
     if name==None or name=='' or assemblyCode==None or assemblyCode=='':
-        output.print_html('<div style="background:red">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,name,i.Id))
+        if  name=='' or name==None:
+            pass
+        else:
+            output.print_html('<div style="background:red">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,name,i.Id))
 
     else:
         print("name:{},assemblyCode{},materials:{}".format(name,assemblyCode,name))
