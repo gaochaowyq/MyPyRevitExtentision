@@ -94,26 +94,14 @@ for i in allElementsInView:
         materialNames = GetElementMaterial(i)
 
     if name==None or name=='' or assemblyCode==None or assemblyCode=='':
-        if  name=='' or name==None:
-            pass
-        else:
-<<<<<<< HEAD
-            output.print_html('<div style="background:red">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,materialNames,i.Id))
 
-    else:
-        print("name:{},assemblyCode{},materials:{}".format(name,assemblyCode,materialNames))
-
-
-
-=======
-            _output='<div style="background:red">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,materialNames,i.Id)
-            Problem.append(_output)
-            #output.print_html(_output)
+        _output='<div style="background:red">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,materialNames,i.Id)
+        Problem.append(_output)
+        #output.print_html(_output)
 
     else:
         _output = '<div style="">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,materialNames,i.Id)
         NoProblem.append(_output)
->>>>>>> b14e5deea06ed1a6dae09066c8dfef66631be98c
 
 for i in Problem:
     output.print_html(i)
