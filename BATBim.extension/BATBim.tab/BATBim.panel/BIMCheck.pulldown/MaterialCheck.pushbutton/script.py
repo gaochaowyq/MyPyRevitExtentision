@@ -19,41 +19,95 @@ if hostapp.app.Language.ToString()=="English_USA":
 elif hostapp.app.Language.ToString()=="Chinese_Simplified":
     ParameterName = LG_CHS()
 
+def GetWallLayeredMaterial(Wall):
+    materialNames=';'
+    materialIds=[]
+    wallType=Wall.WallType
+    if wallType.Kind==DB.WallKind.Basic:
+        wallCompoundStructure=wallType.GetCompoundStructure()
+        layerCount=wallCompoundStructure.LayerCount
+        for i in range(0,layerCount):
+            materialId=wallCompoundStructure.GetMaterialId(i)
+            materialIds.append(materialId)
+
+            if materialId.IntegerValue==-1:
+                return None
+            else:
+                materialNames+=doc.GetElement(materialId).Name
+        return materialNames
+    else:
+        return "Not Layered Wall"
+
+
+def GetFloorLayeredMaterial(Floor):
+    materialNames = ';'
+    materialIds = []
+    floorType = Floor.FloorType
+    floorCompoundStructure = floorType.GetCompoundStructure()
+    layerCount = floorCompoundStructure.LayerCount
+    for i in range(0, layerCount):
+        materialId = floorCompoundStructure.GetMaterialId(i)
+        materialIds.append(materialId)
+
+        if materialId.IntegerValue == -1:
+            return None
+        else:
+            materialNames += doc.GetElement(materialId).Name
+    return materialNames
+
+def GetElementMaterial(Element):
+    materialNames = ';'
+    materialIds = []
+    materials = Element.GetMaterialIds(False)
+    for c in materials:
+        if c.IntegerValue == -1:
+            return None
+        else:
+            materialNames += doc.GetElement(c).Name
+    return materialNames
+
+
+
 #Read Rhino File
-allElementsInView=db.Collector(view=doc.ActiveView,is_type=False).get_elements(wrapped=False)
+
+allElementsInView=db.Collector(view=doc.ActiveView,exclude=[1470918],is_type=False).get_elements(wrapped=False)
+
+#allElementsInView=DB.FilteredElementCollector(doc)
+NoProblem=[]
+Problem=[]
+
 
 for i in allElementsInView:
-    materials=i.GetMaterialIds(False)
-    name=i.Name
-    materialNames=[]
-    """
-    if isinstance(i,DB.FamilyInstance):
-        type=i.Symbol
-        assemblyCode=type.get_Parameter(DB.BuiltInParameter.UNIFORMAT_CODE).AsString()
-    else:
-        assemblyCode=None
-    """
-    wrappedElement=db.Element(i)
+    materialNames =';'
+    name = i.Name
+    wrappedElement = db.Element(i)
     try:
-        assemblyCode=wrappedElement.type.parameters[ParameterName.UNIFORMAT_CODE].value
+        assemblyCode = wrappedElement.type.parameters[ParameterName.UNIFORMAT_CODE].value
     except:
-        assemblyCode=None
+        assemblyCode = None
+    if isinstance(i,DB.Wall):
+        materialNames=GetWallLayeredMaterial(i)
 
+    elif isinstance(i,DB.Floor):
+        materialNames=GetFloorLayeredMaterial(i)
+    else:
+        materialNames = GetElementMaterial(i)
 
-    for c in materials:
-        m=doc.GetElement(c)
-        materialNames.append(m.Name)
     if name==None or name=='' or assemblyCode==None or assemblyCode=='':
         if  name=='' or name==None:
             pass
         else:
-            output.print_html('<div style="background:red">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,name,i.Id))
+            _output='<div style="background:red">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,materialNames,i.Id)
+            Problem.append(_output)
+            #output.print_html(_output)
 
     else:
-        print("name:{},assemblyCode{},materials:{}".format(name,assemblyCode,name))
+        _output = '<div style="">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,materialNames,i.Id)
+        NoProblem.append(_output)
 
+for i in Problem:
+    output.print_html(i)
 
-
-
-
+for i in NoProblem:
+    output.print_html(i)
 
