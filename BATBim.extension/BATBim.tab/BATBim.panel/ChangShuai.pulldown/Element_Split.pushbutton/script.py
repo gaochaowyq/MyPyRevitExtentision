@@ -111,7 +111,7 @@ def CreateSolidFamily(solid,template,familyname,**kwargs):
         e.Commit()
     opt = DB.SaveAsOptions()
     opt.OverwriteExistingFile = True
-    newFamilyPath="G:/Temp/{}.rfa".format(familyname)
+    newFamilyPath="D:/Temp/{}.rfa".format(familyname)
     fdoc.SaveAs(newFamilyPath, opt)
     fdoc.Close()
     return newFamilyPath
@@ -143,7 +143,7 @@ def LoadFamily(familyPath,MatId):
 
 template=os.path.join(_familyTemplatePath,FamilyTemplateName)
 
-#print(template)
+print(template)
 
 print(len(solids))
 for i in range(0,len(solids)):

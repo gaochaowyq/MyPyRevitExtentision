@@ -47,10 +47,10 @@ for i in allElementsInView:
         if  name=='' or name==None:
             pass
         else:
-            output.print_html('<div style="background:red">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,name,i.Id))
+            output.print_html('<div style="background:red">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,materialNames,i.Id))
 
     else:
-        print("name:{},assemblyCode{},materials:{}".format(name,assemblyCode,name))
+        print("name:{},assemblyCode{},materials:{}".format(name,assemblyCode,materialNames))
 
 
 
