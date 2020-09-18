@@ -234,7 +234,7 @@ class BAT_Room:
             FloorType =self.FloorFinishType
             level =self.RoomLevel
 
-            _doc = pyrevit._HostApplication(__revit__).doc.Create
+            _doc = pyrevit._HostApplication().doc.Create
             try:
                 self.NewFloor=_doc.NewFloor(Floor_CurveArray,FloorType,level,None)
                 self.NewFloor.get_Parameter(DB.BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM).Set(self.RoomBase)
@@ -280,7 +280,7 @@ class BAT_Room:
             Floor_CurveArray=DB.CurveArray()
             for i in Wall_curves:
                 Floor_CurveArray.Append(i)
-            _doc = pyrevit._HostApplication(__revit__).doc.Create
+            _doc = pyrevit._HostApplication().doc.Create
 
             _doc.NewFloor(Floor_CurveArray,CeilingType,level,None)
         try:
