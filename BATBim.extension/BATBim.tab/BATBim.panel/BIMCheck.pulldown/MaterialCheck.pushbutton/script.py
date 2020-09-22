@@ -66,6 +66,32 @@ def GetElementMaterial(Element):
             materialNames += doc.GetElement(c).Name
     return materialNames
 
+def GetPipeMaterial(Pipe):
+    materialNames = ';'
+    materialIds = []
+    pipeSegment=Pipe.PipeSegment
+    if pipeSegment!=None:
+        materials = pipeSegment.GetMaterialIds(False)
+        for c in materials:
+            if c.IntegerValue == -1:
+                return None
+            else:
+                materialNames += doc.GetElement(c).Name
+    else:
+        print("Pipe:{} Has no PipeSegement".format(Pipe.Id))
+        return None
+    return materialNames
+def GetDuctMaterial(Duct):
+    materialNames = ';'
+    materialIds = []
+    MEPSystem=Duct.MEPSystem
+    materials =  MEPSystem.GetMaterialIds(False)
+    for c in materials:
+        if c.IntegerValue == -1:
+            return None
+        else:
+            materialNames += doc.GetElement(c).Name
+    return materialNames
 
 
 #Read Rhino File
@@ -87,9 +113,12 @@ for i in allElementsInView:
         assemblyCode = None
     if isinstance(i,DB.Wall):
         materialNames=GetWallLayeredMaterial(i)
-
     elif isinstance(i,DB.Floor):
         materialNames=GetFloorLayeredMaterial(i)
+    elif isinstance(i,DB.Plumbing.Pipe):
+        materialNames=GetPipeMaterial(i)
+    elif isinstance(i,DB.Mechanical.Duct):
+        materialNames=GetDuctMaterial(i)
     else:
         materialNames = GetElementMaterial(i)
 
