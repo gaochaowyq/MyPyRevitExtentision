@@ -11,7 +11,7 @@ import csv
 from  Helper import *
 uidoc = __revit__.ActiveUIDocument
 doc = __revit__.ActiveUIDocument.Document
-hostapp = _HostApplication(__revit__)
+hostapp = _HostApplication()
 print(hostapp.app.Language)
 if hostapp.app.Language.ToString()=="English_USA":
     ParameterName=LG_EUN()

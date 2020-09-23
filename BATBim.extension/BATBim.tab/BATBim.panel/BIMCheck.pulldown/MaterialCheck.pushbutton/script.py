@@ -69,17 +69,12 @@ def GetElementMaterial(Element):
 def GetPipeMaterial(Pipe):
     materialNames = ';'
     materialIds = []
-    pipeSegment=Pipe.PipeSegment
-    if pipeSegment!=None:
-        materials = pipeSegment.GetMaterialIds(False)
-        for c in materials:
-            if c.IntegerValue == -1:
-                return None
-            else:
-                materialNames += doc.GetElement(c).Name
-    else:
-        print("Pipe:{} Has no PipeSegement".format(Pipe.Id))
-        return None
+    material=Pipe.get_Parameter(DB.BuiltInParameter.RBS_PIPE_MATERIAL_PARAM).AsValueString()
+    print(material)
+
+
+    materialNames = material
+
     return materialNames
 def GetDuctMaterial(Duct):
     materialNames = ';'
