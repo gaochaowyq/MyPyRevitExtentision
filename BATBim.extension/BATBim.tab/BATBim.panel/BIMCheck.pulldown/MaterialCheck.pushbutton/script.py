@@ -59,39 +59,73 @@ def GetElementMaterial(Element):
     materialNames = ';'
     materialIds = []
     materials = Element.GetMaterialIds(False)
+
+    wrappedElement=db.Element(Element)
+
     for c in materials:
         if c.IntegerValue == -1:
             return None
         else:
             materialNames += doc.GetElement(c).Name
+    return materialNames
+def GetFamilyInstanceMaterial(FamilyInstance):
+    materialNames = ';'
+    materialIds = []
+    family = FamilyInstance.Symbol.Family
+    familyDoc = doc.EditFamily(family)
+    collector = DB.FilteredElementCollector(familyDoc)
+    collection =collector.OfClass(DB.GenericForm).ToElements()
+    for i in collection:
+        materialId=i.get_Parameter(DB.BuiltInParameter.MATERIAL_ID_PARAM).AsElementId()
+        material = doc.GetElement(materialId)
+        if material != None:
+            materialName= material.Name
+            materialNames+=materialName
+        else:
+            return None
     return materialNames
 
 def GetPipeMaterial(Pipe):
     materialNames = ';'
     materialIds = []
-    material=Pipe.get_Parameter(DB.BuiltInParameter.RBS_PIPE_MATERIAL_PARAM).AsValueString()
-    print(material)
+    materialId=Pipe.get_Parameter(DB.BuiltInParameter.RBS_PIPE_MATERIAL_PARAM).AsElementId()
+    material=doc.GetElement(materialId)
+    if material!=None:
+        materialNames = material.Name
+        return materialNames
+    else:
+        return None
 
-
-    materialNames = material
-
-    return materialNames
 def GetDuctMaterial(Duct):
     materialNames = ';'
     materialIds = []
     MEPSystem=Duct.MEPSystem
-    materials =  MEPSystem.GetMaterialIds(False)
-    for c in materials:
-        if c.IntegerValue == -1:
-            return None
-        else:
-            materialNames += doc.GetElement(c).Name
-    return materialNames
+    MEPSystemTypeId=MEPSystem.GetTypeId()
+
+    MEPSystemType=doc.GetElement(MEPSystemTypeId)
+    """
+    Wraped=db.Element(MEPSystemType)
+
+    print(Wraped.parameters['Material'].builtin)
+    parameters=MEPSystemType.Parameters
+    """
+
+    #for i in parameters:
+    #    print(i.AsValueString())
+
+
+    materialId = MEPSystemType.get_Parameter(DB.BuiltInParameter.MATERIAL_ID_PARAM).AsElementId()
+    material=doc.GetElement(materialId)
+    if material!=None:
+        materialNames = material.Name
+        return materialNames
+    else:
+        return None
 
 
 #Read Rhino File
 
-allElementsInView=db.Collector(view=doc.ActiveView,exclude=[1470918],is_type=False).get_elements(wrapped=False)
+allElementsInView=db.Collector(view=doc.ActiveView,is_type=False).get_elements(wrapped=False)
 
 #allElementsInView=DB.FilteredElementCollector(doc)
 NoProblem=[]
@@ -106,30 +140,37 @@ for i in allElementsInView:
         assemblyCode = wrappedElement.type.parameters[ParameterName.UNIFORMAT_CODE].value
     except:
         assemblyCode = None
-    if isinstance(i,DB.Wall):
+    if isinstance(i,DB.View3D):
+        continue
+    elif isinstance(i,DB.Wall):
         materialNames=GetWallLayeredMaterial(i)
     elif isinstance(i,DB.Floor):
         materialNames=GetFloorLayeredMaterial(i)
+    elif isinstance(i, DB.FamilyInstance):
+        materialNames = GetFamilyInstanceMaterial(i)
     elif isinstance(i,DB.Plumbing.Pipe):
         materialNames=GetPipeMaterial(i)
     elif isinstance(i,DB.Mechanical.Duct):
         materialNames=GetDuctMaterial(i)
     else:
-        materialNames = GetElementMaterial(i)
+        #print(dir(i))
+        #materialNames = GetElementMaterial(i)
+        continue
 
-    if name==None or name=='' or assemblyCode==None or assemblyCode=='':
+    if name==None or name=='' or assemblyCode==None or assemblyCode=='' or materialNames==None:
 
         _output='<div style="background:red">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,materialNames,i.Id)
-        Problem.append(_output)
+        Problem.append([_output,i.Id])
         #output.print_html(_output)
 
     else:
         _output = '<div style="">name:{},assemblyCode:{},materials:{},Id:{}</div>'.format(name,assemblyCode,materialNames,i.Id)
-        NoProblem.append(_output)
+        NoProblem.append([_output])
 
 for i in Problem:
-    output.print_html(i)
+    output.print_html(i[0])
+    print(output.linkify(i[1]))
 
 for i in NoProblem:
-    output.print_html(i)
+    output.print_html(i[0])
 
